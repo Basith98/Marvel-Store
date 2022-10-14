@@ -1,4 +1,4 @@
-const CartService = require("../BLL/CartService");
+const CartService = require("../BLL/cartService");
 
 module.exports = {
   getTotalAmountAndCount: async (req, res) => {
