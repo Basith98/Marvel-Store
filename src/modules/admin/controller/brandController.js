@@ -1,4 +1,4 @@
-const BrandService = require("../BLL/BrandService");
+const BrandService = require("../BLL/brandService");
 const adminHeader = { admin: true };
 
 module.exports = {

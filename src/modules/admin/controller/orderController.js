@@ -1,4 +1,4 @@
-const OrderService = require("../BLL/OrderService");
+const OrderService = require("../BLL/orderService");
 const adminHeader = { admin: true };
 
 module.exports = {

@@ -1,5 +1,4 @@
-const async = require("hbs/lib/async");
-const OrderService = require("../BLL/OrderService");
+const OrderService = require("../BLL/orderService");
 const DashboardService = require("../BLL/dashboardService");
 
 module.exports = {

@@ -1,4 +1,4 @@
-const CouponService = require("../BLL/CouponService");
+const CouponService = require("../BLL/couponService");
 const adminHeader = { admin: true };
 
 module.exports = {

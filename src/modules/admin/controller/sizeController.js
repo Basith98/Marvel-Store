@@ -1,4 +1,4 @@
-const SizeService = require("../BLL/SizeService");
+const SizeService = require("../BLL/sizeService");
 
 module.exports = {
   getSize: async (req, res) => {

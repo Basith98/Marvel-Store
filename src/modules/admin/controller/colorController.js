@@ -1,4 +1,4 @@
-const ColorService = require("../BLL/ColorService");
+const ColorService = require("../BLL/colorService");
 const adminHeader = { admin: true };
 
 module.exports = {

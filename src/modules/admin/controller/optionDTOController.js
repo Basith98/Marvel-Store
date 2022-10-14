@@ -1,6 +1,6 @@
 const optionDTOService = require("../BLL/optionDTOService");
-const ColorService = require("../BLL/ColorService");
-const SizeService = require("../BLL/SizeService");
+const ColorService = require("../BLL/colorService");
+const SizeService = require("../BLL/sizeService");
 
 module.exports = {
   getParentCategories: async (req, res) => {
