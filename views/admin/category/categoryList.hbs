@@ -1,0 +1,76 @@
+<link href="/stylesheets/bstreeview.css" rel="stylesheet">
+
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous">
+
+<div class="container-fluid bg-soft">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <div class="card" style="width: 100rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Category Lists</h5>
+                    <button type="button" class="btn btn-sm"><a href="/admin/categoryDetails"> Add
+                            Category
+                        </a></button>
+                    <div class="row">
+                        <div class="col-md-5  pt-5">
+                            <div id="tree" style="background-color: rgb(133, 173, 247);">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- <div class="col-3 col-md-2 col-xl-1 pl-md-0 mr-3 text-right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-info mr-3 ms-auto text-white"><a
+                            href="/admin/categoryDetails"> Add
+                            Category
+                        </a></button>
+                </div>
+            </div> --}}
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="content">
+
+
+
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+<script src="/javascripts/bstreeview.js" type="text/javascript">
+</script>
+<script>
+    jQuery(document).ready(async function ($) {
+        try {
+            const params = { status: { toJSON: () => 1 } };
+
+            const response = await axios.get('/admin/category')
+            let datas = response.data.parentCategories;
+            $('#tree').bstreeview({
+                data: datas,
+                expandIcon: 'fa fa-angle-down fa-fw',
+                collapseIcon: 'fa fa-angle-right fa-fw',
+                indent: 1.25,
+                parentsMarginLeft: '1.25rem',
+                openNodeLinkOnNewTab: true
+            });
+        }
+        catch (e) {
+            console.log(e);
+        }
+    });
+</script>

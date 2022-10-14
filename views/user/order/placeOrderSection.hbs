@@ -1,0 +1,404 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+
+<div>
+
+</div>
+<div class="container ml-5 mt-3">
+    <div class="col-12 col-lg-12">
+        <img src="/images/timeline/place-order.jpeg" style="height: 50px;" alt="">
+    </div>
+    <div class=" ml-5 mt-5 mb-5">
+        <div>
+            <p style="font-size: 23px; font-weight:600">Review your order</p>
+            <hr style="color: rgb(197, 197, 197);">
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <div class="card text">
+                    <div class="card-body">
+                        <div class="row">
+                            {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                            <div class="col-12 col-lg-4 mt-1">
+
+                                <h6 style="font-size: 17px;">Shipping address</h6>
+                                <p class="mt-3" style="font-size: 15px;">
+                                    {{address.fullName}}<br>
+                                    {{address.flatHouseNoOrApartment}}
+                                    {{address.areaStreetOrVillage}} <br>
+                                    {{address.townOrCity}}
+                                    {{address.state}}
+                                    {{address.pincode}} <br>
+                                    Phone: {{address.mobileNumber}}
+                                </p>
+                            </div>
+                            <div class="col-12 col-lg-4 mt-1">
+                                <h6 style="font-size: 17px;">Payment method</h6>
+                                <p class="mt-3" style="font-size: 15px;">
+                                    {{paymentMethod}}<br>
+
+                                </p>
+                            </div>
+                            <div class="col-12 col-lg-4 mt-1">
+                                <h6 style="font-size: 17px;">Gift cards, Voucher & Promotional codes</h6>
+                                <input type="text" name="couponCode" placeholder="Enter Code">
+                                <button onclick="applyCode()" class="border border-secondary">Apply</button>
+                                <p hidden id="invalidCoupon" style="color: red;">Invalid code</p>
+                                <p hidden id="validCoupon" style="color: rgb(52, 201, 52);">Congralutions, coupon redem
+                                    successfully</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                {{#each orderDetails}}
+                <div class="card text mt-3">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-12 col-lg-12">
+                                <h6 class="mt-3 ml-2" style="color:#da1b1b;" id="warningContent{{this.products._id}}">
+                                </h6>
+
+                            </div>
+                            {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                            <h6 style="font-size: 17px;">Items shipped from Marvel store<img
+                                    src="/images/marvel-Logo.png" style="height:24px;"></h6>
+                            <div class="col-12 col-lg-7 mt-1">
+                                <div class="row">
+                                    <div class="col-12 col-lg-3">
+                                        <img class="img-fluid" src="{{this.productDteails.images.0.imageUrl}}"
+                                            style="height: 100px" alt="">
+                                    </div>
+                                    <div class="col-12 col-lg-4">
+                                        <h5>{{this.productDteails.productName}}</h5>
+                                        <div style="line-height: normal;">
+                                            <sapn style="color: rgb(199, 30, 30); font-size:16px; font-weight:bold">
+                                                ₹{{this.eachTotal}}.00 </sapn><br>
+                                            <div id="beforeChange{{this.products._id}}">
+                                                <span style="font-weight: 400;"> Quantity :
+                                                    {{this.products.quantity}}</span>
+                                                <a href="javascript:changeQuantity('{{this.products._id}}')"
+                                                    style="text-decoration: none; font-size:14px">
+                                                    Change</a>
+                                            </div>
+                                            <div id="afterChange{{this.products._id}}" hidden>
+                                                <label for=""> Quantity:</label>
+                                                <input min="1" max="{{this.productDteails.limitPerUser}}"
+                                                    id="productQuantity{{this.products.colorId}}{{this.products.sizeId}}"
+                                                    name="productQuantity" value="{{this.products.quantity}}"
+                                                    type="number">
+                                                <a href="javascript:checkLimitPerUser('{{this.productDteails.limitPerUser}}','{{this.products._id}}','{{this.products.productId}}','{{this.products.colorId}}','{{this.products.sizeId}}')"
+                                                    style=" text-decoration: none; font-size:14px">
+                                                    Update</a> |
+                                                <a href="javascript:deleteCart('{{this.products._id}}')"
+                                                    style="text-decoration: none; font-size:14px">
+                                                    Delete</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4 mt-1">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {{/each}}
+            </div>
+
+            <div class="col-12 col-lg-3">
+                <div class="card text">
+                    <div class="card-body">
+                        <div>
+                            <button class="btn  btn-block border-secondary mt-2"
+                                style="background-color: #f4d381; width:100%; font-weight:600"
+                                onclick="payAndPlaceOrder()">
+                                Place Your Order and Pay
+                            </button>
+                            <p class=" mt-1" style="font-size:13px; color :rgb(188, 184, 184)">When your order is
+                                placed,
+                                we'll send you
+                                an e-mail message acknowledging receipt of your order.</p>
+
+                            <h6>Order Summary</h6>
+                            <div class="row" style="font-size:15px;">
+                                <div class="col-6 col-lg-7 mt-1">
+                                    <span>Items:</span>
+                                </div>
+                                <div class="col-6 col-lg-5 mt-1">
+                                    <span id="totalAmount">₹{{subTotal}}.00</span>
+                                </div>
+
+                                <div class="col-6 col-lg-7 mt-1">
+                                    <span>Delivery:</span>
+                                </div>
+                                <div class="col-6 col-lg-5 mt-1">
+                                    <span id="deliveryCharge">₹80.00</span>
+                                </div>
+
+                                <div class="col-6 col-lg-7 mt-1">
+                                    <span>Total:</span>
+                                </div>
+                                <div class="col-6 col-lg-5 mt-1">
+                                    <span id="totalWithDelivery"> </span>
+                                </div>
+                                <div class="col-6 col-lg-7 mt-1">
+                                    <span>Promotion Applied:</span>
+                                </div>
+                                <div class="col-6 col-lg-5 mt-1">
+                                    <span id="deliveryCharge">-₹80.00</span>
+                                </div>
+                                <div class="col-12 col-lg-12" id="couponDiv" hidden>
+                                    <div class="row">
+                                        <div class="col-6 col-lg-7 mt-1">
+                                            <span>Coupon Applied:</span>
+                                        </div>
+                                        <div class="col-6 col-lg-5 mt-1">
+                                            <span id="couponDiscountAmount"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="hrLine mt-2">
+                                <div class="col-6 col-lg-7"
+                                    style="color: rgb(199, 30, 30); font-size:20px; font-weight:bold">
+                                    <span>Total:</span>
+                                </div>
+                                <div class="col-6 col-lg-5 mt-1"
+                                    style="color: rgb(199, 30, 30); font-size:20px; font-weight:bold">
+                                    <span id="total">₹{{subTotal}}.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    {{!--
+    <hr class="finalhr mt-3 mb-5"> --}}
+
+</div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSgaJDac0dQsgPMIaw9XNbyr2Q8bJm5Ww&libraries=places&callback=initAutocomplete"
+    async defer></script>
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script type="text/javascript">
+    let couponId;
+    let totalProductsAmount;
+    jQuery(document).ready(async function ($) {
+        try {
+            let amount = document.getElementById('totalAmount').innerHTML;
+            console.log(amount);
+            let number = amount.match(/(\d+)/);
+            let total = parseInt(number[0]) + 80;
+            totalProductsAmount = number;
+            console.log(total);
+            document.getElementById('totalWithDelivery').textContent = `₹${total}.00`;
+        }
+        catch (e) {
+            console.log(e.message);
+        }
+    });
+
+    changeQuantity = async (Id) => {
+        console.log("colorId", Id);
+        document.getElementById(`beforeChange${Id}`).hidden = true;
+        document.getElementById(`afterChange${Id}`).hidden = false;
+    }
+
+    async function payAndPlaceOrder() {
+        await axios.post('/updateOrder', { currentStatus: 'paymentConfirmation', couponId: couponId }).then(res => {
+            console.log("dfg", res)
+            if (res.data.codStatus) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Order placed, thank you!',
+                    text: 'Confirmation will be sent to your email.',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+
+                setTimeout(() => {
+                    location.href = "/orderDetails"
+                }, 2500)
+            }
+            else {
+                razorPay(res.data)
+            }
+        })
+    }
+
+    function razorPay(order) {
+        var options = {
+            "key": "rzp_test_kIi3E0UDnnukGT", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Marvel Store",
+            "description": "Test Transaction",
+            "image": "/images/marvel-Logo.png",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+            "handler": function (response) {
+                /*alert(response.razorpay_payment_id);
+                alert(response.razorpay_order_id);
+                alert(response.razorpay_signature)*/
+                verifyPayment(response, order)
+            },
+
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    verifyPayment = async (payment, order) => {
+        await axios.post('/verifyPayment', { payment: payment, order: order }).then(async (res) => {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Order placed, thank you!',
+                text: 'Confirmation will be sent to your email.',
+                showConfirmButton: false,
+                timer: 2500
+            })
+
+            setTimeout(() => {
+                location.href = "/orderDetails"
+            }, 2500)
+
+        })
+    }
+
+
+    async function checkLimitPerUser(limitPerUser, productId, Id, colorId, sizeId) {
+        //quantityWarningDiv = document.getElementById(`productQuantity${Id}`).value;
+        let quantity = document.getElementById(`productQuantity${colorId}${sizeId}`).value;
+        if (quantity == "0" || quantity == "") {
+            document.getElementById(`productQuantity${colorId}${sizeId}`).value
+            return
+        }
+        console.log(quantity);
+        console.log(limitPerUser);
+        let quantityWarningDiv = document.getElementById(`warningContent${productId}`)
+        if (Number(limitPerUser) < Number(quantity)) {
+            quantityWarningDiv.hidden = false;
+            quantity = limitPerUser;
+            document.getElementById(`productQuantity${colorId}${sizeId}`).value = limitPerUser;
+            document.getElementById(`warningContent${productId}`).innerHTML = `We're sorry. The quantity you requested is no longer available. We've updated the quantity to reflect the maximum available. Please update with in the range.`
+            // go to the <a href="/productDetails/${Id}" styl="color:blue !important"> product detail page.</a>`
+            return
+        }
+        else {
+            document.getElementById(`productQuantity${colorId}${sizeId}`).value = quantity;
+            //quantityWarningDiv.hidden = true;
+        }
+        let data = {
+            productId: Id,
+            quantityUpdateStatus: true,
+            quantity: quantity,
+            colorId: colorId,
+            sizeId: sizeId,
+        }
+        console.log("data", data);
+        console.log("limitPerUser", limitPerUser);
+        console.log("quantity", typeof quantity);
+        console.log("quantity", quantity);
+
+        axios.post('/updateCart', data).then(res => {
+            console.log("response", res.data)
+            location.reload();
+        })
+        //quantityWarningDiv
+        // console.log(Id);
+    }
+
+    async function deleteCart(id) {
+        //quantityWarningDiv.hidden = true;
+        let data = {};
+        data.id = id;
+        data.recordStatusId = 3;
+        await axios.post('/updateCart', data).then(res => {
+            if (res.data.response.returnStatus === true) {
+                location.reload();
+            }
+        })
+    }
+
+
+    applyCode = async () => {
+        let couponCode = document.querySelector('input[name=couponCode]').value;
+        await axios.post('/applyCode', { couponCode: couponCode, amount: totalProductsAmount }).then(res => {
+            console.log("response", res.data)
+            if (res.data.status) {
+                couponId = res.data.couponId;
+                document.getElementById("couponDiv").hidden = false;
+                document.getElementById("couponDiscountAmount").innerHTML = `-₹${res.data.discount}.00`
+                let currentTotal = document.getElementById("total").innerHTML;
+                console.log("currentTotal", currentTotal.slice(1, currentTotal.length));
+                let afterDiscount = currentTotal.slice(1, currentTotal.length) - res.data.discount;
+                afterDiscount = afterDiscount < 0 ? 0 : afterDiscount
+                document.getElementById("total").innerHTML = `₹${afterDiscount}.00`;
+                document.getElementById("invalidCoupon").hidden = true;
+                document.getElementById("validCoupon").hidden = false;
+            }
+            else {
+                document.getElementById("validCoupon").hidden = true;
+                document.getElementById("invalidCoupon").hidden = false;
+            }
+
+        })
+    }
+
+</script>
+
+<style>
+    .hrLine {
+        height: 20px;
+        width: 80%;
+        margin: 0 0 0 15px;
+        color: rgb(179, 177, 177);
+    }
+
+    .warningBorder {
+        width: 91%;
+        height: ;
+        border-style: solid;
+        border-color: #FFAF38;
+        border-radius: 7px;
+        border-left-width: 12px;
+    }
+</style>

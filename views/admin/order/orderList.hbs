@@ -1,0 +1,547 @@
+<div class="container-fluid bg-soft">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <class class="layout-container">
+                <div class="layout-page">
+                    <div class="content-wrapper">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Orders</h5>
+                            </div>
+                            <div class="card-block">
+                                <!-- Row start -->
+                                <div class="row">
+                                    <div class="col-lg-12 col-xl-12">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs  tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active bg-c-lite-green text-dark" data-toggle="tab"
+                                                    id="vitalInfoTab" href="#orders" role="tab"><span
+                                                        style="font-weight: 800;">ORDERS</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link bg-c-lite-green text-dark" data-toggle="tab"
+                                                    id="variationTab" href="#deliveredOrders" role="tab"><span
+                                                        style="font-weight: 800;">DELIVERED</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link bg-c-lite-green text-dark" data-toggle="tab"
+                                                    id="offersAndCouponsTabId" href="#cancelOrders" role="tab">
+                                                    <span style="font-weight: 800;">CANCELLED</span> </a>
+                                            </li>
+
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content tabs card-block"
+                                            style="background-color:rgb(242, 242, 242) ;">
+                                            <div class="tab-pane active" id="orders" role="tabpanel">
+                                                {{#each confirmedOrders}}
+                                                <div class="card mt-5">
+                                                    <div class="card-header">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-4">
+                                                                <h6>ORDER PLACED</h6>
+                                                                <p style="font-size:16px; font-weight:400"
+                                                                    id="orderPlaced">{{this.createdAt}}</p>
+                                                            </div>
+                                                            <div class="col-12 col-lg-4">
+                                                                <h6>TOTAL</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:600; color: rgb(26, 25, 25)">
+                                                                    ₹{{this.totalUnitPrice}}.00</p>
+                                                            </div>
+                                                            <div class="col-12 col-lg-3">
+                                                                <p style="font-size:16px; font-weight:400">ORDER #
+                                                                    {{this._id}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" card-body">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-4">
+                                                                <h6>SHIP TO</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:400; color:#007185">
+                                                                    {{this.address.0.fullName}}<br>
+                                                                    {{this.address.0.flatHouseNoOrApartment}}, <br>
+                                                                    {{this.address.0.areaStreetOrVillage}}
+                                                                    ,{{this.address.0.townOrCity}}<br>
+                                                                    {{this.address.0.state}}, {{this.address.0.pincode}}
+                                                                    India<br>
+                                                                    Phone: {{this.address.0.mobileNumber}}
+                                                                </p>
+                                                            </div>
+                                                            <div class=" col-12 col-lg-2">
+                                                                <h6>Payment Method</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:400; color:#007185">
+                                                                    {{this.payment.0.paymentMethod}}</p>
+                                                            </div>
+                                                            <div class=" col-12 col-lg-3">
+                                                                <h6>Payment Status</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:400; color:#007185">
+                                                                    {{this.payment.0.status}}</p>
+                                                            </div>
+
+                                                            <div class=" col-12 col-lg-3">
+                                                                <button class="btn btn-secondary mt-3"
+                                                                    onclick="updateStatusModal('{{this._id}}')"
+                                                                    style="background-color: #fdf05d; color:black;">
+                                                                    <span style="font-weight: 600;"> Update
+                                                                        Status</span>
+                                                                </button>
+                                                                <button class="btn btn-secondary mt-3"
+                                                                    onclick="viewProducts('{{this._id}}')"
+                                                                    style="background-color: #5df8fd; color:black">
+                                                                    <span style="font-weight: 600;"> Products</span>
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="col-12 col-lg-12">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="timeline-steps aos-init aos-animate"
+                                                                            data-aos="fade-up">
+                                                                            <div class="timeline-step">
+                                                                                <div class="timeline-content"
+                                                                                    data-toggle="popover"
+                                                                                    data-trigger="hover"
+                                                                                    data-placement="top" title=""
+                                                                                    data-content="And here's some amazing content. It's very engaging. Right?"
+                                                                                    data-original-title="2003">
+                                                                                    <div class="inner-circle"></div>
+                                                                                    <p class="h6 mt-3 mb-1">
+                                                                                        Order Confirmed</p>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="timeline-step">
+                                                                                <div class="timeline-content"
+                                                                                    data-toggle="popover"
+                                                                                    data-trigger="hover"
+                                                                                    data-placement="top" title=""
+                                                                                    data-content="And here's some amazing content. It's very engaging. Right?"
+                                                                                    data-original-title="2004">
+                                                                                    <div class="inner-circle"></div>
+                                                                                    <p class="h6 mt-3 mb-1">Shipped</p>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="timeline-step">
+                                                                                <div class="timeline-content"
+                                                                                    data-toggle="popover"
+                                                                                    data-trigger="hover"
+                                                                                    data-placement="top" title=""
+                                                                                    data-content="And here's some amazing content. It's very engaging. Right?"
+                                                                                    data-original-title="2005">
+                                                                                    <div class="inner-circle"></div>
+                                                                                    <p class="h6 mt-3 mb-1">
+                                                                                        Out For Delivery</p>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="timeline-step">
+                                                                                <div class="timeline-content"
+                                                                                    data-toggle="popover"
+                                                                                    data-trigger="hover"
+                                                                                    data-placement="top" title=""
+                                                                                    data-content="And here's some amazing content. It's very engaging. Right?"
+                                                                                    data-original-title="2005">
+                                                                                    <div class="inner-circle"></div>
+                                                                                    <p class="h6 mt-3 mb-1">
+                                                                                        Delivered</p>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+
+                                                {{/each}}
+                                            </div>
+
+                                            <div class="tab-pane" id="deliveredOrders" role="tabpanel">
+
+                                                {{#each deliveredOrders}}
+                                                <div class="card mt-5">
+                                                    <div class="card-header">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-4">
+                                                                <h6>ORDER PLACED</h6>
+                                                                <p style="font-size:16px; font-weight:400"
+                                                                    id="orderPlaced">{{this.createdAt}}</p>
+                                                            </div>
+                                                            <div class="col-12 col-lg-4">
+                                                                <h6>TOTAL</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:600; color: black">
+                                                                    ₹{{this.totalUnitPrice}}.00</p>
+                                                            </div>
+                                                            <div class="col-12 col-lg-3">
+                                                                <p style="font-size:16px; font-weight:400">ORDER #
+                                                                    {{this._id}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" card-body">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-4">
+                                                                <h6>SHIP TO</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:400; color:#007185">
+                                                                    {{this.address.0.fullName}}<br>
+                                                                    {{this.address.0.flatHouseNoOrApartment}}, <br>
+                                                                    {{this.address.0.areaStreetOrVillage}}
+                                                                    ,{{this.address.0.townOrCity}}<br>
+                                                                    {{this.address.0.state}}, {{this.address.0.pincode}}
+                                                                    India<br>
+                                                                    Phone: {{this.address.0.mobileNumber}}
+                                                                </p>
+                                                            </div>
+                                                            <div class=" col-12 col-lg-2">
+                                                                <h6>Payment Method</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:400; color:#007185">
+                                                                    {{this.payment.0.paymentMethod}}</p>
+                                                            </div>
+                                                            <div class=" col-12 col-lg-3">
+                                                                {{!-- <h6>Payment Status</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:400; color:#007185">
+                                                                    {{this.payment.0.status}}</p> --}}
+                                                            </div>
+
+                                                            <div class=" col-12 col-lg-3">
+
+                                                                <button class="btn btn-secondary mt-3"
+                                                                    onclick="viewProducts('{{this._id}}')"
+                                                                    style="background-color: #5df8fd; color:black">
+                                                                    <span style="font-weight: 600;"> Products</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                {{/each}}
+                                            </div>
+                                            <div class="tab-pane" id="cancelOrders" role="tabpanel">
+                                                {{#each cancelOrders}}
+                                                <div class="card mt-5">
+                                                    <div class="card-header">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-4">
+                                                                <h6>ORDER PLACED</h6>
+                                                                <p style="font-size:16px; font-weight:400"
+                                                                    id="orderPlaced">{{this.createdAt}}</p>
+                                                            </div>
+                                                            <div class="col-12 col-lg-4">
+                                                                <h6>TOTAL</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:600; color: black">
+                                                                    ₹{{this.totalUnitPrice}}.00</p>
+                                                            </div>
+                                                            <div class="col-12 col-lg-3">
+                                                                <p style="font-size:16px; font-weight:400">ORDER #
+                                                                    {{this._id}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" card-body">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-4">
+                                                                <h6>SHIP TO</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:400; color:#007185">
+                                                                    {{this.address.0.fullName}}<br>
+                                                                    {{this.address.0.flatHouseNoOrApartment}}, <br>
+                                                                    {{this.address.0.areaStreetOrVillage}}
+                                                                    ,{{this.address.0.townOrCity}}<br>
+                                                                    {{this.address.0.state}}, {{this.address.0.pincode}}
+                                                                    India<br>
+                                                                    Phone: {{this.address.0.mobileNumber}}
+                                                                </p>
+                                                            </div>
+                                                            <div class=" col-12 col-lg-2">
+                                                                <h6>Payment Method</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:400; color:#007185">
+                                                                    {{this.payment.0.paymentMethod}}</p>
+                                                            </div>
+                                                            <div class=" col-12 col-lg-3">
+                                                                {{!-- <h6>Payment Status</h6>
+                                                                <p
+                                                                    style="font-size:16px; font-weight:400; color:#007185">
+                                                                    {{this.payment.0.status}}</p> --}}
+                                                            </div>
+
+                                                            <div class=" col-12 col-lg-3">
+
+                                                                <button class="btn btn-secondary mt-3"
+                                                                    onclick="viewProducts('{{this._id}}')"
+                                                                    style="background-color: #5df8fd; color:black">
+                                                                    <span style="font-weight: 600;"> Products</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                {{/each}}
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- Row end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </class>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="updateStatus" tabindex="-1" style=" width: 100%;" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel">Update Status</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="col-12 col-lg-12">
+                        <label class="form-label" for="basic-default-fullname">Update Status</label>
+
+                        <select placeholder="category name" id="orderStatusInput" class="form-control"
+                            aria-label="Default select example">
+                            <option selected>Select status</option>
+                            <option value="orderConfirmed">orderConfirmed</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="outForDelivery">outForDelivery</option>
+                            <option value="delivered">delivered</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-close" onclick="closeModal()" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        close</button>
+                    <button type="button" class="btn btn-success" onclick="updateStatus()" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        Update</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="orderedProductsModal" tabindex="-1" style=" width: 100%;"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid" id="modalProductCard">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-close" onclick="closeModal()" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+<script>
+    let orderId;
+    jQuery(document).ready(async function ($) {
+        var myDiv = $('#orderPlaced');
+        myDiv.text(myDiv.text().substring(0, 16))
+    });
+
+    updateStatusModal = async (id) => {
+        orderId = id;
+        $('#updateStatus').modal('show');
+    };
+
+    updateStatus = async () => {
+        orderStatus = $('#orderStatusInput').val();
+        let data = {
+            orderId: orderId,
+            status: orderStatus
+        }
+        await axios.post('/admin/updateStatus', data).then((response) => {
+            console.log(response);
+            if (response.status) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Order updated successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                setTimeout(() => {
+                    location.reload();
+                }, 1500)
+            }
+        });
+    }
+
+
+
+    viewProducts = async (id) => {
+        console.log("idd", id)
+        let products = await axios.post('/orderBasedProduct', { orderId: id }).then(result => {
+            console.log(result);
+            let products = result.data;
+            let card;
+            products.map(product => {
+                card += `<div class="card mt-5" >
+                            <div class="card-header">
+                                <div class="row">
+
+                                    <div class="col-12 col-lg-3">
+                                        <h6>TOTAL</h6>
+                                        <p style="font-size:16px; font-weight:500; color: black">
+                                            ₹${product.eachTotal}.00</p>
+                                    </div>
+                                    <div class="col-12 col-lg-3">
+                                        
+                                    </div>
+
+                                    <div class=" col-12 col-lg-6">
+                                        <p style="font-size:16px; font-weight:400">ORDER # ${product._id}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" card-body">
+                                <div class="row">
+                                    <div class="col-12 col-lg-3">
+                                        <img class="img-fluid" src="${product.productDetails.images[0].imageUrl}"
+                                            style="height: 80px" alt="">
+                                    </div>
+                                    <div class="col-12 col-lg-8">
+                                        <h5 style="color: #007185; font-weight:600">${product.productDetails.productName}
+                                        </h5>
+                                         <div style="line-height: normal;">
+                                             <span style="font-weight: 400;"> Color :
+                                                ${product.colors[0].colorMap} </span> <br>
+                <span style="font-weight: 400;"> Size :
+                    ${product.sizes[0].size}</span><br>
+                     <span style="font-weight: 400;"> Quantity :
+                                                ${product.products.quantity} </span>
+            </div>
+
+                                    </div >
+                                         
+                                    </div >
+
+                                </div >
+                            </div >
+                            </div >`
+            })
+            $('#modalProductCard').html("");
+            console.log("card", card)
+            $('#modalProductCard').append(card)
+        })
+
+        $('#orderedProductsModal').modal('show');
+    }
+
+    function closeModal() {
+        $('#orderedProductsModal').modal('hide');
+        $('#updateStatus').modal('hide');
+    }
+
+</script>
+
+<style>
+    .timeline-steps {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap
+    }
+
+    .timeline-steps .timeline-step {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin: 1rem
+    }
+
+    @media (min-width:768px) {
+        .timeline-steps .timeline-step:not(:last-child):after {
+            content: "";
+            display: block;
+            border-top: .25rem dotted #3b82f6;
+            width: 3.46rem;
+            position: absolute;
+            left: 7.5rem;
+            top: .3125rem
+        }
+
+        .timeline-steps .timeline-step:not(:first-child):before {
+            content: "";
+            display: block;
+            border-top: .25rem dotted #3b82f6;
+            width: 3.8125rem;
+            position: absolute;
+            right: 7.5rem;
+            top: .3125rem
+        }
+    }
+
+    .timeline-steps .timeline-content {
+        width: 10rem;
+        text-align: center
+    }
+
+    .timeline-steps .timeline-content .inner-circle {
+        border-radius: 1.5rem;
+        height: 1rem;
+        width: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #3b82f6
+    }
+
+    .timeline-steps .timeline-content .inner-circle:before {
+        content: "";
+        background-color: #3b82f6;
+        display: inline-block;
+        height: 3rem;
+        width: 3rem;
+        min-width: 3rem;
+        border-radius: 6.25rem;
+        opacity: .5
+    }
+</style>

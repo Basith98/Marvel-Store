@@ -1,0 +1,38 @@
+<div class="customer-login">
+    <br> <br>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="account_form register" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Create Account</h3>
+                    <form action="/userRegister" id="signUpForm" method="post">
+                        <div class="default-form-box">
+                            <label>Your Name<span class="text-danger">*</span></label>
+                            <input type="text" name="name" placeholder="First and Last Name">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Email<span class="text-danger">*</span></label>
+                            <input type="text" name="email">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Mobile Number (optional)</label>
+                            <input type="text" name="mobileNumber" placeholder="Mobile Number">
+                        </div>
+
+                        <div class="default-form-box">
+                            <label>Passwords <span class="text-danger">*</span></label>
+                            <input type="password" name="password" placeholder="At least 6 characters">
+                        </div>
+                        {{#if isExist}}
+                        <p style="color: red;">{{message}}</p>
+                        {{/if}}
+                        <div class="login_submit">
+                            <button class="btn btn-md btn-black-default-hover" type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br> <br>
+</div>

@@ -1,0 +1,972 @@
+<div class="product-details-section mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-6">
+                <div class="product-details-gallery-area product-details-gallery-area-vartical product-details-gallery-area-vartical-left"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <!-- Start Large Image -->
+                    <div class="product-large-image product-large-image-vartical swiper-container ml-5">
+                        <div class="swiper-wrapper">
+                            <div class="product-image-large-image swiper-slide zoom-image-hover img-responsive">
+                                <img id="productMainImage" src="{{images.0.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-image-large-image swiper-slide zoom-image-hover img-responsive">
+                                <img src="{{images.1.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-image-large-image swiper-slide zoom-image-hover img-responsive">
+                                <img src="{{images.2.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-image-large-image swiper-slide zoom-image-hover img-responsive">
+                                <img src="{{images.3.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-image-large-image swiper-slide zoom-image-hover img-responsive">
+                                <img src="{{images.4.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-image-large-image swiper-slide zoom-image-hover img-responsive">
+                                <img src="{{images.5.imageUrl}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Large Image -->
+                    <!-- Start Thumbnail Image -->
+                    <div class="product-image-thumb product-image-thumb-vartical swiper-container pos-relative">
+                        <div class="swiper-wrapper">
+                            <div class="product-image-thumb-single swiper-slide">
+                                <img class="img-fluid" src="{{images.1.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-image-thumb-single swiper-slide">
+                                <img class="img-fluid" src="{{images.2.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-image-thumb-single swiper-slide">
+                                <img class="img-fluid" src="{{images.3.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-image-thumb-single swiper-slide">
+                                <img class="img-fluid" src="{{images.4.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-image-thumb-single swiper-slide">
+                                <img class="img-fluid" src="{{images.5.imageUrl}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Thumbnail Image -->
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-6">
+                <input type="text" hidden id="limitPerUser" value="{{product.0.limitPerUser}}">
+                <div class="product-details-content-area product-details--golden" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <!-- Start  Product Details Text Area-->
+                    <div class="product-details-text">
+                        <p>Brand : {{product.0.brandName}}</p>
+                        <h4 class="title">{{product.0.productName}}</h4>
+                        <div class="d-flex align-items-center">
+                            <ul class="review-star">
+                                <li class="fill"><i class="ion-android-star"></i></li>
+                                <li class="fill"><i class="ion-android-star"></i></li>
+                                <li class="fill"><i class="ion-android-star"></i></li>
+                                <li class="fill"><i class="ion-android-star"></i></li>
+                                <li class="empty"><i class="ion-android-star"></i></li>
+                            </ul>
+                            <a href="#" class="customer-review ml-2">(customer review )</a>
+                        </div>
+                        <div class="price" id="priceTag">₹{{product.0.colorAndSizeVariation.0.Price}} /-</div>
+                        <p>{{product.0.description}}</p>
+                    </div>
+                    <!-- End  Product Details Text Area-->
+                    <!-- Start Product Variable Area -->
+                    <div class="product-details-variable">
+                        <h4 class="title">Available Options</h4>
+                        <!-- Product Variable Single Item -->
+                        <div class="variable-single-item">
+                            <div class="product-stock" id="isInStock" hidden> <span class="product-stock-in"><i
+                                        class="ion-checkmark-circled"></i></span> <span id="stockQuantity"></span> IN
+                                STOCK
+                            </div>
+                            <div class="product-stock" id="outOfStock" hidden> <span class="product-stock-in"><i
+                                        class="ion-close-circled" style="color: red;"></i></span> <span
+                                    id="stockQuantity"></span>OUT OF
+                                STOCK
+                            </div>
+                        </div>
+                        <!-- Product Variable Single Item -->
+                        <div class="variable-single-item">
+                            <span>Color</span>
+                            <div class="product-variable-color">
+                                {{#each product.0.colors}}
+                                <label for="product-color-red" onclick="colorChecked('{{this._id}}','{{product}}')">
+                                    <input id="product-color-red{{this._id}}" type="radio">
+                                    <span style="background-color:{{this.color}};"></span>
+
+                                </label>
+                                {{/each}}
+
+                            </div>
+                        </div>
+
+                        <!-- Product Variable Single Item -->
+                        <div class="variable-single-item" id="sizeOptionsDiv">
+                            {{!-- <span>Size</span> --}}
+
+
+
+                            </select>
+                        </div>
+                        <!-- Product Variable Single Item -->
+                        <div class="d-flex align-items-center ">
+                            <div class="variable-single-item " id="quantityBox" hidden>
+                                <span>Quantity</span>
+                                <div class="product-variable-quantity">
+                                    <input onchange="checkLimitPerUser('{{product.0.limitPerUser}}')" min="1"
+                                        max="{{product.0.limitPerUser}}" id="productQuantity" name="productQuantity"
+                                        value="1" type="number">
+                                </div>
+                            </div>
+
+                            <div class="product-add-to-cart-btn">
+                                {{!-- <a href="/updateCart" data-bs-toggle="modal" data-bs-target="#modalAddcart">+ Add
+                                    To
+                                    Cart</a> --}}
+                                <btn class="btn btn-dark" style="color: white;"
+                                    onclick="addToCart('{{product.0._id}}','{{product.0.limitPerUser}}')"> + Add
+                                    To
+                                    Cart</btn>
+                            </div>
+                        </div>
+                        <!-- Start  Product Details Meta Area-->
+                        <div class="product-details-meta mb-20">
+                            <a href="wishlist.html" class="icon-space-right"><i class="icon-heart"></i>Add to
+                                wishlist</a>
+                            <a href="compare.html" class="icon-space-right"><i class="icon-refresh"></i>Compare</a>
+                        </div>
+                        <!-- End  Product Details Meta Area-->
+                    </div>
+                    <!-- End Product Variable Area -->
+
+                    <!-- Start  Product Details Catagories Area-->
+                    <div class="product-details-catagory mb-2">
+                        <span class="title">CATEGORIES:</span>
+                        <ul>
+                            <li><a href="#">BAR STOOL</a></li>
+                            <li><a href="#">KITCHEN UTENSILS</a></li>
+                            <li><a href="#">TENNIS</a></li>
+                        </ul>
+                    </div>
+                    <!-- End  Product Details Catagories Area-->
+
+
+                    <!-- Start  Product Details Social Area-->
+                    <div class="product-details-social">
+                        <span class="title">SHARE THIS PRODUCT:</span>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- End  Product Details Social Area-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product-details-content-tab-section section-top-gap-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product-details-content-tab-wrapper" data-aos="fade-up" data-aos-delay="0">
+
+                    <!-- Start Product Details Tab Button -->
+                    <ul class="nav tablist product-details-content-tab-btn d-flex justify-content-center">
+                        <li><a class="nav-link active" data-bs-toggle="tab" href="#description">
+                                Description
+                            </a></li>
+                        <li><a class="nav-link" data-bs-toggle="tab" href="#specification">
+                                Specification
+                            </a></li>
+                        <li><a class="nav-link" data-bs-toggle="tab" href="#review">
+                                Reviews (1)
+                            </a></li>
+                    </ul> <!-- End Product Details Tab Button -->
+
+                    <!-- Start Product Details Tab Content -->
+                    <div class="product-details-content-tab">
+                        <div class="tab-content">
+                            <!-- Start Product Details Tab Content Singel -->
+                            <div class="tab-pane active show" id="description">
+                                <div class="single-tab-content-item">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla
+                                        augue
+                                        nec est tristique auctor. Donec non est at libero vulputate rutrum.
+                                        Morbi
+                                        ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate
+                                        adipiscing cursus eu, suscipit id nulla. </p>
+                                    <p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem,
+                                        quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce
+                                        ultricies
+                                        massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero
+                                        hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit
+                                        amet,
+                                        consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum,
+                                        metus
+                                        nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus,
+                                        consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus,
+                                        in
+                                        imperdiet ligula euismod eget</p>
+                                </div>
+                            </div> <!-- End Product Details Tab Content Singel -->
+                            <!-- Start Product Details Tab Content Singel -->
+                            <div class="tab-pane" id="specification">
+                                <div class="single-tab-content-item">
+                                    <table class="table table-bordered mb-20">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Compositions</th>
+                                                <td>Polyester</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Styles</th>
+                                                <td>Girly</td>
+                                            <tr>
+                                                <th scope="row">Properties</th>
+                                                <td>Short Dress</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p>Fashion has been creating well-designed collections since 2010. The brand
+                                        offers feminine designs delivering stylish separates and statement
+                                        dresses
+                                        which have since evolved into a full ready-to-wear collection in which
+                                        every
+                                        item is a vital part of a woman's wardrobe. The result? Cool, easy, chic
+                                        looks with youthful elegance and unmistakable signature style. All the
+                                        beautiful pieces are made in Italy and manufactured with the greatest
+                                        attention. Now Fashion extends to a range of accessories including
+                                        shoes,
+                                        hats, belts and more!</p>
+                                </div>
+                            </div> <!-- End Product Details Tab Content Singel -->
+                            <!-- Start Product Details Tab Content Singel -->
+                            <div class="tab-pane" id="review">
+                                <div class="single-tab-content-item">
+                                    <!-- Start - Review Comment -->
+                                    <ul class="comment">
+                                        <!-- Start - Review Comment list-->
+                                        <li class="comment-list">
+                                            <div class="comment-wrapper">
+                                                <div class="comment-img">
+                                                    <img src="/userAssets/images/user/image-1.png" alt="">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <div class="comment-content-top">
+                                                        <div class="comment-content-left">
+                                                            <h6 class="comment-name">Kaedyn Fraser</h6>
+                                                            <ul class="review-star">
+                                                                <li class="fill"><i class="ion-android-star"></i>
+                                                                </li>
+                                                                <li class="fill"><i class="ion-android-star"></i>
+                                                                </li>
+                                                                <li class="fill"><i class="ion-android-star"></i>
+                                                                </li>
+                                                                <li class="fill"><i class="ion-android-star"></i>
+                                                                </li>
+                                                                <li class="empty"><i class="ion-android-star"></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="comment-content-right">
+                                                            <a href="#"><i class="fa fa-reply"></i>Reply</a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="para-content">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing
+                                                            elit.
+                                                            Tempora inventore dolorem a unde modi iste odio
+                                                            amet,
+                                                            fugit fuga aliquam, voluptatem maiores animi dolor
+                                                            nulla
+                                                            magnam ea! Dignissimos aspernatur cumque nam quod
+                                                            sint
+                                                            provident modi alias culpa, inventore deserunt
+                                                            accusantium amet earum soluta consequatur quasi eum
+                                                            eius
+                                                            laboriosam, maiores praesentium explicabo enim
+                                                            dolores
+                                                            quaerat! Voluptas ad ullam quia odio sint sunt.
+                                                            Ipsam
+                                                            officia, saepe repellat. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Start - Review Comment Reply-->
+                                            <ul class="comment-reply">
+                                                <li class="comment-reply-list">
+                                                    <div class="comment-wrapper">
+                                                        <div class="comment-img">
+                                                            <img src="/userAssets/images/user/image-2.png" alt="">
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <div class="comment-content-top">
+                                                                <div class="comment-content-left">
+                                                                    <h6 class="comment-name">Oaklee Odom</h6>
+                                                                </div>
+                                                                <div class="comment-content-right">
+                                                                    <a href="#"><i class="fa fa-reply"></i>Reply</a>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="para-content">
+                                                                <p>Lorem ipsum dolor sit amet, consectetur
+                                                                    adipisicing elit. Tempora inventore dolorem
+                                                                    a
+                                                                    unde modi iste odio amet, fugit fuga
+                                                                    aliquam,
+                                                                    voluptatem maiores animi dolor nulla magnam
+                                                                    ea!
+                                                                    Dignissimos aspernatur cumque nam quod sint
+                                                                    provident modi alias culpa, inventore
+                                                                    deserunt
+                                                                    accusantium amet earum soluta consequatur
+                                                                    quasi
+                                                                    eum eius laboriosam, maiores praesentium
+                                                                    explicabo enim dolores quaerat! Voluptas ad
+                                                                    ullam quia odio sint sunt. Ipsam officia,
+                                                                    saepe
+                                                                    repellat. </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul> <!-- End - Review Comment Reply-->
+                                        </li> <!-- End - Review Comment list-->
+                                        <!-- Start - Review Comment list-->
+                                        <li class="comment-list">
+                                            <div class="comment-wrapper">
+                                                <div class="comment-img">
+                                                    <img src="/userAssets/images/user/image-3.png" alt="">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <div class="comment-content-top">
+                                                        <div class="comment-content-left">
+                                                            <h6 class="comment-name">Jaydin Jones</h6>
+                                                            <ul class="review-star">
+                                                                <li class="fill"><i class="ion-android-star"></i>
+                                                                </li>
+                                                                <li class="fill"><i class="ion-android-star"></i>
+                                                                </li>
+                                                                <li class="fill"><i class="ion-android-star"></i>
+                                                                </li>
+                                                                <li class="fill"><i class="ion-android-star"></i>
+                                                                </li>
+                                                                <li class="empty"><i class="ion-android-star"></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="comment-content-right">
+                                                            <a href="#"><i class="fa fa-reply"></i>Reply</a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="para-content">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing
+                                                            elit.
+                                                            Tempora inventore dolorem a unde modi iste odio
+                                                            amet,
+                                                            fugit fuga aliquam, voluptatem maiores animi dolor
+                                                            nulla
+                                                            magnam ea! Dignissimos aspernatur cumque nam quod
+                                                            sint
+                                                            provident modi alias culpa, inventore deserunt
+                                                            accusantium amet earum soluta consequatur quasi eum
+                                                            eius
+                                                            laboriosam, maiores praesentium explicabo enim
+                                                            dolores
+                                                            quaerat! Voluptas ad ullam quia odio sint sunt.
+                                                            Ipsam
+                                                            officia, saepe repellat. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li> <!-- End - Review Comment list-->
+                                    </ul> <!-- End - Review Comment -->
+                                    <div class="review-form">
+                                        <div class="review-form-text-top">
+                                            <h5>ADD A REVIEW</h5>
+                                            <p>Your email address will not be published. Required fields are
+                                                marked
+                                                *</p>
+                                        </div>
+
+                                        <form action="#" method="post">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="default-form-box">
+                                                        <label for="comment-name">Your name
+                                                            <span>*</span></label>
+                                                        <input id="comment-name" type="text"
+                                                            placeholder="Enter your name" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="default-form-box">
+                                                        <label for="comment-email">Your Email
+                                                            <span>*</span></label>
+                                                        <input id="comment-email" type="email"
+                                                            placeholder="Enter your email" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="default-form-box">
+                                                        <label for="comment-review-text">Your review
+                                                            <span>*</span></label>
+                                                        <textarea id="comment-review-text" placeholder="Write a review"
+                                                            required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-md btn-black-default-hover"
+                                                        type="submit">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> <!-- End Product Details Tab Content Singel -->
+                        </div>
+                    </div> <!-- End Product Details Tab Content -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Product Content Tab Section -->
+
+<!-- Start Product Default Slider Section -->
+<div class="product-default-slider-section section-top-gap-100 section-fluid">
+    <!-- Start Section Content Text Area -->
+    <div class="section-title-wrapper" data-aos="fade-up" data-aos-delay="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-content-gap">
+                        <div class="secton-content">
+                            <h3 class="section-title">RELATED PRODUCTS</h3>
+                            <p>Browse the collection of our related products.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Section Content Text Area -->
+    <div class="product-wrapper" data-aos="fade-up" data-aos-delay="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-slider-default-1row default-slider-nav-arrow">
+                        <!-- Slider main container -->
+                        <div class="swiper-container product-default-slider-4grid-1row">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                                <!-- End Product Default Single Item -->
+                                <!-- Start Product Default Single Item -->
+                                <div class="product-default-single-item product-color--golden swiper-slide">
+                                    <div class="image-box">
+                                        <a href="product-details-default.html" class="image-link">
+                                            <img src="/userAssets/images/product/default/home-1/default-9.jpg" alt="">
+                                            <img src="/userAssets/images/product/default/home-1/default-10.jpg" alt="">
+                                        </a>
+                                        <div class="action-link">
+                                            <div class="action-link-left">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add to
+                                                    Cart</a>
+                                            </div>
+                                            <div class="action-link-right">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalQuickview"><i
+                                                        class="icon-magnifier"></i></a>
+                                                <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <h6 class="title"><a href="product-details-default.html">Epicuri per
+                                                    lobortis</a></h6>
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="empty"><i class="ion-android-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content-right">
+                                            <span class="price">$68</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- End Product Default Single Item -->
+                                <!-- Start Product Default Single Item -->
+                                <div class="product-default-single-item product-color--golden swiper-slide">
+                                    <div class="image-box">
+                                        <a href="product-details-default.html" class="image-link">
+                                            <img src="/userAssets/images/product/default/home-1/default-11.jpg" alt="">
+                                            <img src="/userAssets/images/product/default/home-1/default-3.jpg" alt="">
+                                        </a>
+                                        <div class="action-link">
+                                            <div class="action-link-left">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add to
+                                                    Cart</a>
+                                            </div>
+                                            <div class="action-link-right">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalQuickview"><i
+                                                        class="icon-magnifier"></i></a>
+                                                <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <h6 class="title"><a href="product-details-default.html">Kaoreet
+                                                    lobortis sagit</a></h6>
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="empty"><i class="ion-android-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content-right">
+                                            <span class="price">$95.00</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- End Product Default Single Item -->
+                                <!-- Start Product Default Single Item -->
+                                <div class="product-default-single-item product-color--golden swiper-slide">
+                                    <div class="image-box">
+                                        <a href="product-details-default.html" class="image-link">
+                                            <img src="/userAssets/images/product/default/home-1/default-5.jpg" alt="">
+                                            <img src="/userAssets/images/product/default/home-1/default-7.jpg" alt="">
+                                        </a>
+                                        <div class="action-link">
+                                            <div class="action-link-left">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add to
+                                                    Cart</a>
+                                            </div>
+                                            <div class="action-link-right">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalQuickview"><i
+                                                        class="icon-magnifier"></i></a>
+                                                <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <h6 class="title"><a href="product-details-default.html">Condimentum
+                                                    posuere</a></h6>
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="empty"><i class="ion-android-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content-right">
+                                            <span class="price">$115.00</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- End Product Default Single Item -->
+                                <!-- Start Product Default Single Item -->
+                                <div class="product-default-single-item product-color--golden swiper-slide">
+                                    <div class="image-box">
+                                        <a href="product-details-default.html" class="image-link">
+                                            <img src="/userAssets/images/product/default/home-1/default-6.jpg" alt="">
+                                            <img src="/userAssets/images/product/default/home-1/default-9.jpg" alt="">
+                                        </a>
+                                        <div class="action-link">
+                                            <div class="action-link-left">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add to
+                                                    Cart</a>
+                                            </div>
+                                            <div class="action-link-right">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalQuickview"><i
+                                                        class="icon-magnifier"></i></a>
+                                                <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <h6 class="title"><a href="product-details-default.html">Convallis
+                                                    quam
+                                                    sit</a></h6>
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="empty"><i class="ion-android-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content-right">
+                                            <span class="price">$75.00 - $85.00</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- End Product Default Single Item -->
+                                <!-- Start Product Default Single Item -->
+                                <div class="product-default-single-item product-color--golden swiper-slide">
+                                    <div class="image-box">
+                                        <a href="product-details-default.html" class="image-link">
+                                            <img src="/userAssets/images/product/default/home-1/default-1.jpg" alt="">
+                                            <img src="/userAssets/images/product/default/home-1/default-2.jpg" alt="">
+                                        </a>
+                                        <div class="tag">
+                                            <span>sale</span>
+                                        </div>
+                                        <div class="action-link">
+                                            <div class="action-link-left">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add to
+                                                    Cart</a>
+                                            </div>
+                                            <div class="action-link-right">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalQuickview"><i
+                                                        class="icon-magnifier"></i></a>
+                                                <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <h6 class="title"><a href="product-details-default.html">Aliquam
+                                                    lobortis</a></h6>
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="empty"><i class="ion-android-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content-right">
+                                            <span class="price">$75.00 - $85.00</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- End Product Default Single Item -->
+                                <!-- Start Product Default Single Item -->
+                                <div class="product-default-single-item product-color--golden swiper-slide">
+                                    <div class="image-box">
+                                        <a href="product-details-default.html" class="image-link">
+                                            <img src="/userAssets/images/product/default/home-1/default-3.jpg" alt="">
+                                            <img src="/userAssets/images/product/default/home-1/default-4.jpg" alt="">
+                                        </a>
+                                        <div class="tag">
+                                            <span>sale</span>
+                                        </div>
+                                        <div class="action-link">
+                                            <div class="action-link-left">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add to
+                                                    Cart</a>
+                                            </div>
+                                            <div class="action-link-right">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalQuickview"><i
+                                                        class="icon-magnifier"></i></a>
+                                                <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <h6 class="title"><a href="product-details-default.html">Condimentum
+                                                    posuere</a></h6>
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="empty"><i class="ion-android-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content-right">
+                                            <span class="price"><del>$89.00</del> $80.00</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- End Product Default Single Item -->
+                                <!-- Start Product Default Single Item -->
+                                <div class="product-default-single-item product-color--golden swiper-slide">
+                                    <div class="image-box">
+                                        <a href="product-details-default.html" class="image-link">
+                                            <img src="/userAssets/images/product/default/home-1/default-5.jpg" alt="">
+                                            <img src="/userAssets/images/product/default/home-1/default-6.jpg" alt="">
+                                        </a>
+                                        <div class="tag">
+                                            <span>sale</span>
+                                        </div>
+                                        <div class="action-link">
+                                            <div class="action-link-left">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add to
+                                                    Cart</a>
+                                            </div>
+                                            <div class="action-link-right">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalQuickview"><i
+                                                        class="icon-magnifier"></i></a>
+                                                <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <h6 class="title"><a href="product-details-default.html">Cras neque
+                                                    metus</a></h6>
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="empty"><i class="ion-android-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content-right">
+                                            <span class="price"><del>$70.00</del> $60.00</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- End Product Default Single Item -->
+                                <!-- Start Product Default Single Item -->
+                                <div class="product-default-single-item product-color--golden swiper-slide">
+                                    <div class="image-box">
+                                        <a href="product-details-default.html" class="image-link">
+                                            <img src="/userAssets/images/product/default/home-1/default-7.jpg" alt="">
+                                            <img src="/userAssets/images/product/default/home-1/default-8.jpg" alt="">
+                                        </a>
+                                        <div class="action-link">
+                                            <div class="action-link-left">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add to
+                                                    Cart</a>
+                                            </div>
+                                            <div class="action-link-right">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalQuickview"><i
+                                                        class="icon-magnifier"></i></a>
+                                                <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <h6 class="title"><a href="product-details-default.html">Donec eu
+                                                    libero
+                                                    ac</a></h6>
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="empty"><i class="ion-android-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content-right">
+                                            <span class="price">$74</span>
+                                        </div>
+
+                                    </div>
+                                </div> <!-- End Product Default Single Item -->
+                            </div>
+                        </div>
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    let colorCheckBox,
+        colorAndSizeVariations,
+        colorId,
+        sizeId,
+        quantity,
+        limitPerUser,
+        sizeStatus = false;
+
+    async function sizeSelected() {
+        sizeStatus = true;
+        document.getElementById("quantityBox").hidden = false;
+        let colorAndSizeVariationsFullDetails = colorAndSizeVariations;
+        sizeId = document.getElementById("sizeOptions").value;
+        colorAndSizeVariationsFullDetails.map((element) => {
+            if (element.colorAndSizeVariation.colorId == colorId && element.colorAndSizeVariation.sizeId == sizeId) {
+                if (element.colorAndSizeVariation.Quantity > 0) {
+                    document.getElementById('isInStock').hidden = false;
+                }
+                else {
+                    document.getElementById('outOfStock').hidden = false;
+                }
+                quantity = element.colorAndSizeVariation.Quantity;
+                document.getElementById('priceTag').innerHTML = `₹${element.colorAndSizeVariation.Price}/-`;
+                console.log("price", element.colorAndSizeVariation.Price);
+            }
+        })
+    }
+
+    async function colorChecked(id, result) {
+        try {
+            colorId = id;
+            let options = ` <select class="product-variable-size" onChange="sizeSelected('{{this.result}}')" style="width: 90px; height:40px" id="sizeOptions">
+                            <option selected value="1"> size in option</option>`;
+            console.log(`product-color-red`)
+            if (colorCheckBox) {
+                colorCheckBox.checked = false;
+            }
+            colorCheckBox = document.getElementById(`product-color-red${id}`)
+            colorCheckBox.checked = true;
+            document.getElementById('stockQuantity').textContent = ``
+            let data = { colorId: id }
+
+            await axios.post('/sizeByColor', data).then(res => {
+                console.log(`product-color-green`, res.data);
+                colorAndSizeVariations = res.data;
+                res.data.map(element => {
+                    console.log(`element`, element.result[0].size);
+                    let eachOption = `<option value="${element.result[0]._id}">${element.result[0].size}</option>`;
+                    options = options.concat(eachOption);
+                    console.log(`option`, options);
+                    //document.getElementById("sizeOptions").options[select.options.length] = new Option('Text 1', 'Value1');
+                })
+                document.getElementById("sizeOptionsDiv").innerHTML = options;
+                console.log(`document`, document.getElementById("sizeOptions"));
+                document.getElementById("sizeOptions").style.display = ''
+
+            })
+        }
+        catch (e) {
+
+        }
+    }
+
+    function checkLimitPerUser(limit) {
+        if (!sizeStatus) {
+            Swal.fire({
+                text: 'Please select color and size',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ok'
+            })
+            document.getElementById("productQuantity").value = 0;
+            return;
+        }
+        if (quantity < 1) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Out of stock',
+            })
+            document.getElementById("productQuantity").value = 0;
+            return;
+        }
+        let inputQuantity = document.getElementById('productQuantity').value;
+        let value;
+        console.log(inputQuantity);
+
+        if (Number(inputQuantity) > Number(limit)) {
+            value = limit;
+            Swal.fire({
+                text: `This seller has only ${limit} of these available`,
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ok'
+            })
+            document.getElementById("productQuantity").value = limit;
+            return;
+        } else { value = inputQuantity; }
+        if (quantity < value) {
+            Swal.fire({
+                text: `only ${quanntity} items available`,
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ok'
+            })
+            value = quantity;
+        }
+        document.getElementById("productQuantity").value = value;
+
+    }
+
+    let addToCart = async (productId, limit) => {
+        try {
+            if (!sizeStatus) {
+                Swal.fire({
+                    text: 'Please select color and size',
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                })
+                return;
+            }
+            if (quantity < 1) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Out of stock',
+                })
+                return;
+            }
+            console.log("productId");
+            let productQuantity = document.getElementById('productQuantity').value;
+            let data = {
+                productId: productId,
+                quantity: productQuantity,
+                limitPerUser: limit,
+                sizeId: sizeId,
+                colorId: colorId,
+            }
+
+            await axios.post('/updateCart', data).then(res => {
+                let src = document.getElementById('productMainImage').src;
+                document.getElementById("addedToCartProductImage").src = src
+                console.log("res", JSON.stringify(res.data));
+                $("#cart-total-count").html(`There Are ${res.data.totalCount} Items In Your Cart.`);
+                $("#cartTotalPrice").html(res.data.totalAmount);
+                $('#modalAddcart').modal('show');
+                console.log("res", res.data.response);
+            })
+        }
+        catch (e) {
+            console.error("error while add to cart", e)
+        }
+    }
+
+</script>

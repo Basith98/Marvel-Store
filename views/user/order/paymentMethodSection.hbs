@@ -1,0 +1,103 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+
+<div>
+
+</div>
+<div class="container ml-5 mt-3">
+    <div class="col-12 col-lg-12">
+        <img src="/images/timeline/delivery-payment.jpeg" style="height: 50px;" alt="">
+    </div>
+    <div class=" ml-5 mt-5 mb-5">
+        <div>
+            <p style="font-size: 30px;">Select a payment method</p>
+            <hr style="color: rgb(197, 197, 197);">
+        </div>
+        <form action="/placeOrder" method="post">
+            <div class="row">
+                <div class="col-9">
+                    <div class="card text">
+                        <div class="card-header">
+                            <h5 class="card-title">Payment methods</h5>
+                        </div>
+                        <div class="card-body">
+
+                            {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                            <div class="col-12 col-lg-12 mt-3">
+                                <label for="onlinePayment">
+                                    <input type="radio" id="onlinePayment" value="onlinePayment" required
+                                        name="paymentMethod">
+                                </label>
+                                <label for="onlinePayment" style="font-weight:bold; margin-left:20px;">Online
+                                    Payment</label>
+                            </div>
+                            <div class="col-12 col-lg-12 mt-4">
+                                <label for="cod">
+                                    <input type="radio" id="cod" required value="cod" name="paymentMethod">
+                                </label>
+                                <label for="cod" style="font-weight: bold; margin-left:20px;">Pay On
+                                    Delivery</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="card text">
+                        <div class="card-header">
+                            <div>
+                                <button class="btn  btn-block border-secondary mt-4"
+                                    style="background-color: #f4d381; width:100%; font-weight:600" type="submit">
+                                    Continue
+                                </button>
+                                <p class="text-center mt-3 mb-4">You can review this order before it's final.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    {{!--
+    <hr class="finalhr mt-3 mb-5"> --}}
+
+</div>
+</div>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSgaJDac0dQsgPMIaw9XNbyr2Q8bJm5Ww&libraries=places&callback=initAutocomplete"
+    async defer></script>
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+    $("input:radio").on('click', function () {
+        var $box = $(this);
+        if ($box.is(":checked")) {
+            var group = "input:checkbox[name='" + $box.attr("name") + "']";
+            $(group).prop("checked", false);
+            $box.prop("checked", true);
+        } else {
+            $box.prop("checked", false);
+        }
+    });
+
+    async function submit() {
+        console.log(document.querySelector('input[name="paymentMethod"]:checked').value);
+        let paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value
+
+    }
+
+</script>
+
+<style>
+
+</style>

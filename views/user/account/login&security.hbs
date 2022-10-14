@@ -1,0 +1,207 @@
+<div class="container mt-5 mb-5">
+
+    <div class="d-flex justify-content-center">
+        <div class="card mt-5 pt-2 pb-3" id="bgHover" style="width: 44rem; border-radius: 8px">
+            <div class="card-body">
+                <h2 class="ml-3">Login & Security </h2>
+                <hr style="color: rgb(182, 182, 182);">
+                <br>
+
+                <div class="row mb-5">
+                    <div class="col-12 col-lg-9 ml-3">
+                        <p><span style="font-weight: 700;"> Name:</span><br>
+                            {{userName}}</p>
+                    </div>
+                    <div class="col-12 col-lg-2">
+                        <button type="button" class="btn btnStyle" onclick="edit('name')">Edit</button>
+                    </div>
+                </div>
+                <hr style="color: rgb(182, 182, 182);">
+                <div class="row mb-5">
+                    <div class="col-12 col-lg-9 ml-3">
+                        <p><span style="font-weight: 700;"> E-mail:</span><br>
+                            {{email}}</p>
+                    </div>
+                    <div class="col-12 col-lg-2">
+                        <button type="button" class="btn btnStyle" onclick="edit('email')">Edit</button>
+                    </div>
+                </div>
+                <hr style="color: rgb(182, 182, 182);">
+                <div class="row mb-5">
+                    <div class="col-12 col-lg-9 ml-3">
+                        <p><span style="font-weight: 700;"> Mobile Phone Number:</span><br>
+                            {{#if mobileNumber}} {{mobileNumber}} {{else}} <br>{{/if}}</p>
+                    </div>
+                    <div class="col-12 col-lg-2">
+                        <button type="button" class="btn btnStyle" onclick="edit('mobileNumber')">Edit</button>
+                    </div>
+                </div>
+                <hr style="color: rgb(182, 182, 182);">
+                <div class="row mb-5">
+                    <div class="col-12 col-lg-9 ml-3">
+                        <p><span style="font-weight: 700;"> Password:</span><br>
+                            ******</p>
+                    </div>
+                    <div class="col-12 col-lg-2">
+                        <button type="button" class="btn btnStyle" onclick="edit('password')">Edit</button>
+                    </div>
+                </div>
+                {{!--
+                <hr style="color: rgb(182, 182, 182);"> --}}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-12" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid" id="editModalCard">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+<script>
+    function edit(state) {
+        let content;
+        if (state == "name") {
+            content = ` <div class="card mt-5">
+                        <div class="card-body ml-5 mt-5 mb- 5">
+                            <h3>Change Your Name</h3>
+
+                            <p>If you want to change the name associated with your Marvel customer account, you may do
+                                so below.
+                                Be sure to click the Save Changes button when you are done.</p>
+                            <div class="mt-3 col-12 col-lg-6">
+                                <label class="form-label" for="basic-default-fullname"
+                                    style="color: black;">Name</label>
+                                <input type="text" label="hello" class="form-control" name="name" value="{{userName}}"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="mt-5 mb-5">
+                                <button class="btn btn-success mt-4"
+                                    style="background-color: #f4d381; width:18%; font-weight:600" onclick="saveChanges('name')">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>`
+        }
+        else if (state == "email") {
+            content = ` <div class="card mt-5">
+                        <div class="card-body ml-5 mt-5 mb- 5">
+                            <h3>Change Your Email</h3> 
+                            <div class="mt-3 col-12 col-lg-6">
+                                <label class="form-label" for="basic-default-fullname"
+                                    style="color: black;">E-mail</label>
+                                <input type="email" label="hello" class="form-control" name="email" value="{{email}}"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="mt-5 mb-5">
+                                <button class="btn btn-success mt-4"
+                                    style="background-color: #f4d381; width:18%; font-weight:600" onclick="saveChanges('email')">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>`
+        }
+        else if (state == "password") {
+            content = ` <div class="card mt-5">
+                        <div class="card-body ml-5 mt-5 mb- 5">
+                            <h3>Change Your Password</h3>
+
+                            <div class="mt-3 col-12 col-lg-6">
+                                <p style="color:red" hidden id="passwordValidation">The password combination doesn't match</p>
+                                <label class="form-label" for="basic-default-fullname"
+                                    style="color: black;">New Password</label>
+                                <input type="password" label="hello" class="form-control" name="password"  
+                                    />
+                                    <label class="form-label" for="basic-default-fullname"
+                                    style="color: black;">Confirm Password</label>
+                                <input type="password" label="hello"  class="form-control" name="confirmPassword" 
+                                      />
+                            </div>
+                            <div class="mt-5 mb-5">
+                                <button class="btn btn-success mt-4"
+                                    style="background-color: #f4d381; width:18%; font-weight:600" onclick="checkPassword()">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>`
+        }
+        else if (state == "mobileNumber") {
+            content = ` <div class="card mt-5">
+                        <div class="card-body ml-5 mt-5 mb- 5">
+                            <h3>Change Your Mobile Number</h3>
+
+                            <p>If you want to change the name associated with your Marvel customer account, you may do
+                                so below.
+                                Be sure to click the Save Changes button when you are done.</p>
+                            <div class="mt-3 col-12 col-lg-6">
+                                <label class="form-label" for="basic-default-fullname"
+                                    style="color: black;">Mobile Number</label>
+                                <input type="number" label="hello" class="form-control" name="mobileNumber" value="{{mobileNumber}}"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="mt-5 mb-5">
+                                <button class="btn btn-success mt-4"
+                                    style="background-color: #f4d381; width:18%; font-weight:600" onclick="saveChanges('mobileNumber')">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>`
+        }
+        $('#editModalCard').html("");
+        $('#editModalCard').append(content);
+        $('#editModal').modal('show');
+    }
+
+    function checkPassword() {
+        let password = $(`input[name="password"]`).val();
+        let confirmPassword = $(`input[name="confirmPassword"]`).val();
+        console.log("saveChanges", password)
+        console.log("confirmPassword", confirmPassword);
+        if (password === confirmPassword) {
+            saveChanges('password');
+        }
+        else {
+            console.log("IIIn")
+            document.getElementById("passwordValidation").hidden = false;
+        }
+    }
+
+    saveChanges = async (state) => {
+        let changedValue = $(`input[name=${state}]`).val();
+        console.log("saveChanges", changedValue);
+        await axios.post('/updateAccountdetails', { state: state, value: changedValue }).then((res) => {
+            console.log("saveChanges", res);
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: `${state} updated successfully!`,
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+
+
+        });
+    }
+</script>
+
+<style>
+    .btnStyle {
+        background-color: rgb(233, 233, 233);
+    }
+</style>

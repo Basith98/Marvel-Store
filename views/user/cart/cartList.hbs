@@ -1,0 +1,455 @@
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+{{!-- <div id="quantityWarning">
+    <p class="float-left p-5"> <span><i class='fas fa-exclamation-triangle' style='font-size:48px;color:#ffaf38;'></i>
+        </span> This element
+        has a 2px black border and a green outline
+        with a width
+        of 10px.</p>
+</div> --}}
+<div class="col-12 col-lg-12">
+    <div class="container-fluid mt-5 mr-5 ml-5 warningBorder" id="quantityWarningDiv" hidden
+        style="background-color: white;">
+        <div style="display: flex;">
+
+            <i class='fas fa-exclamation-triangle mt-2' style='font-size:23px;color: #FFAF38'></i>
+            <p class="mt-3 ml-2" style="color:#0F1111" id="warningContent"></p>
+        </div>
+    </div>
+</div>
+
+{{#if isCartAndSaveLaterEmpty}}
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+        <div class="card col-lg-9 col-12 mt-3 ml-5 mb-5">
+            <div class="card-body">
+                <div class="row">
+                    {{#if cartStatus}}
+                    <div class="col-lg-12 col-12">
+                        <div class="row">
+                            <div class="col-lg-9 col-11">
+                                <div class="mt-3">
+
+                                    <h3 class="heading-text">Shopping Cart</h3>
+
+
+
+                                    {{!-- <a href="wishlist.html">select all items</a> --}}
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-12">
+                                <p class="pt-5 ml-5">Price</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-12">
+                        <hr>
+                    </div>
+                    {{else}}
+                    <div class="col-lg-12">
+                        <div class="d-flex justify-content-center">
+                            <img src="/images/d438a32e-765a-4d8b-b4a6-520b560971e8.jpg" height="155rem" alt="">
+                        </div>
+                        <div class="d-flex justify-content-center mt-5">
+                            <h4>Your cart is empty!</h4>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <h6>Check your Saved for later items below or </h6> <a href="/">
+                                <h6 class="ml-1 text-info"> continue shopping.</h6>
+                            </a>
+
+                        </div>
+                    </div>
+                    {{/if}}
+
+                    <div class="col-12 col-lg-11 mt-5 mb-4">
+                        {{#if cartStatus}}
+                        <div class="row" id="{{this.products._id}}">
+                            {{#each cartProducts}}
+
+                            <div class="col-lg-1 col-12">
+                                <div class="mt-5">
+                                    <input type="checkbox" id="selectProductStatusBtn{{this.products._id}}" {{#if
+                                        this.products.selectProductStatus}} checked {{/if}}
+                                        onclick="saveForLater('{{this.products._id}}',2)">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9 col-12">
+                                <div class="product-list-single product-color--golden">
+
+                                    <a href="/productDetails/{{this.productDteails._id}}" class="product-list-img-link">
+                                        <img class="img-fluid" src="{{this.productDteails.images.0.imageUrl}}"
+                                            style="height: 140px" alt="">
+                                    </a>
+                                    <div class="product-list-content ml-5">
+                                        <h5 class="product-list-link"><a
+                                                href="/productDetails/{{this.productDteails._id}}">
+                                                {{this.productDteails.productName}}</a></h5>
+                                        <input type="text" id="hiddenQuantity" hidden
+                                            value="{{this.productDteails.colorAndSizeVariation.Quantity}}">
+                                        <div class="product-stock" id="isInStock" style="font-size: 12px;" hidden>
+                                            <span class="product-stock-in"><i class="ion-checkmark-circled"></i></span>
+                                            <span id="stockQuantity"></span> IN
+                                            STOCK
+                                        </div>
+                                        <div class="product-stock" id="outOfStock" style="font-size: 12px;" hidden>
+                                            <span class="product-stock-in"><i class="ion-close-circled"
+                                                    style="color: red;"></i></span> <span id="stockQuantity"></span>OUT
+                                            OF
+                                            STOCK
+                                        </div>
+                                        <p>
+                                            <span style="font-size:13px; font-weight:bold;">Size: </span> <span
+                                                style="font-size: 13px;">
+                                                {{this.sizes.0.size}}</span><br>
+                                            <span style="font-size:13px; font-weight:bold;">Color: </span> <span
+                                                style="font-size: 13px;">
+                                                {{this.colors.0.colorMap}}</span>
+                                        </p>
+                                        <div class="d-flex align-items-center ">
+                                            <div class="variable-single-item ">
+                                                <span>Quantity</span>
+                                                <div class="product-variable-quantity">
+                                                    <input
+                                                        onkeyup="checkLimitPerUser('{{this.productDteails.limitPerUser}}','{{this.products.productId}}','{{this.products.colorId}}','{{this.products.sizeId}}')"
+                                                        onchange="checkLimitPerUser('{{this.productDteails.limitPerUser}}','{{this.products.productId}}','{{this.products.colorId}}','{{this.products.sizeId}}')"
+                                                        min="1" max="{{this.productDteails.limitPerUser}}"
+                                                        id="productQuantity{{this.products.colorId}}{{this.products.sizeId}}"
+                                                        name="productQuantity" value="{{this.products.quantity}}"
+                                                        type="number">
+                                                </div>
+                                            </div>
+                                            <div class="product-action-icon-link-list">
+                                                <button id="btnHover"
+                                                    onclick="deleteCart('{{this.products._id}}')">Delete</button> |
+                                                <button id="btnHover" onclick="saveForLater('{{this.products._id}}',1)">
+                                                    Save
+                                                    for later</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-12">
+                                <h3><span style="font-size:17px">₹</span>{{this.eachTotal}}.00</h3>
+                            </div>
+                            <hr class="mt-3 mb-5">
+
+                            {{/each}}
+                        </div>
+                        {{else}}
+
+                        {{/if}}
+                    </div>
+                    <!-- End Tab Wrapper -->
+                </div>
+
+
+            </div>
+        </div>
+        {{#if cartStatus}}
+        <div class="col-lg-2 col-12 mt-3 mb-3 ml">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mt-4">Subtotal
+                        (<span id="totalCount">{{totalCount}}</span> items) : <h3><span style="font-size:17px">₹</span>
+                            <span id="totalAmount">{{totalAmount}}</span>.00
+                        </h3>
+                    </h5>
+                    <a href="/order">
+                        <button class="btn btn-block dark mt-5 mb-5 btn-style-qq" style="background-color: #ffd814;">
+                            Proceed to buy</button></a>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+
+        <div class="sort-product-tab-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-12">
+                        <div class="tab-content tab-animate-zoom">
+                            <div class="tab-pane sort-layout-single" id="layout-list">
+
+                            </div> <!-- End List View Product -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+        <div class="card col-lg-9 col-12 mt-3 ml-5 mb-5">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-lg-12 col-12">
+                        <div class="row">
+                            <div class="col-lg-9 col-11">
+                                <div class="mt-3">
+                                    <h3 class="heading-text">Your items</h3>
+                                    {{!-- <a href="wishlist.html">select all items</a> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-12">
+                        <hr>
+                    </div>
+
+                    <div class="row mr-1 mb-3 mt-4">
+                        {{#each saveForLater}}
+                        <div class="col-lg-3 col-12 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div>
+                                        <a href="/productDetails/{{this.productDetails._id}}">
+                                            <img src="{{this.productDetails.images.0.imageUrl}}" height="100%"
+                                                width="100%" alt="" style="overflow: hidden;"></a>
+                                    </div>
+                                    <div style="height:2rem">
+                                        <a href="/productDetails/{{this.productDetails._id}}">
+                                            <h4 class="mt-5 productName">{{this.productDetails.productName}}</h4>
+                                        </a>
+                                    </div>
+                                    <h3 class="mt-5 fw-bolder"><span
+                                            style="font-size:17px">₹</span>{{this.productDetails.price}}.00</h3>
+
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i>
+                                                </li>
+                                                <li class="fill"><i class="ion-android-star"></i>
+                                                </li>
+                                                <li class="fill"><i class="ion-android-star"></i>
+                                                </li>
+                                                <li class="fill"><i class="ion-android-star"></i>
+                                                </li>
+                                                <li class="empty"><i class="ion-android-star"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p style="color: green;">In stock</p>
+                                    <button class="btn btn-block dark mt-3 btn-style-qq"
+                                        onclick="saveForLater('{{this.products._id}}',3)">Move to cart</button>
+
+                                    <button id="btnHover" class="mt-3"
+                                        onclick="deleteCart('{{this.products._id}}')">Delete</button>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="sort-product-tab-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tab-content tab-animate-zoom">
+                            <div class="tab-pane sort-layout-single" id="layout-list">
+
+                            </div> <!-- End List View Product -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="offcanvas-overlay"></div>
+<div class="container-fluid mb-5 mt-5">
+    <div class="empty-cart-section section-fluid">
+        <div class="emptycart-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-10 offset-md-1 col-xl-6 offset-xl-3">
+                        <div class="emptycart-content text-center">
+                            <div class="image">
+                                <img class="img-fluid" src="/userAssets/images/emprt-cart/empty-cart.png" alt="">
+                            </div>
+                            <h4 class="title">Your Cart is Empty</h4>
+                            <h6 class="sub-title">Sorry Mate... No item Found inside your cart!</h6>
+                            <btn onclick="history.back()" class="btn btn-lg btn-golden">Continue Shopping</btn>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+
+<style>
+    body {
+        background-color: rgb(240, 240, 240);
+    }
+
+    .heading-text {
+        font-weight: 400 !important;
+        line-height: 20px !important;
+        color: #0F1111 !important;
+    }
+
+    #btnHover:hover {
+        color: rgb(78, 146, 195) !important;
+    }
+</style>
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+<script>
+    let selectProductStatusss;
+    let quantityWarningDiv;
+
+    jQuery(document).ready(async function ($) {
+        let r = $('#hiddenQuantity').val();
+        let qnty = document.getElementById('hiddenQuantity').value;
+
+        if (qnty > 0) {
+            document.getElementById('isInStock').hidden = false;
+        }
+        else {
+            document.getElementById('outOfStock').hidden = false;
+            document.getElementById('selectProductStatusBtn').hidden = true;
+        }
+    })
+
+    function myFunction() {
+        //quantityWarningDiv.hidden = true;
+        var checkBox = document.getElementById("myCheck");
+        var text = document.getElementById("text");
+        if (checkBox.checked == true) {
+            console.log("Check");
+        } else {
+            console.log("uncheck");
+        }
+    }
+    async function deleteCart(id) {
+        //quantityWarningDiv.hidden = true;
+        let data = {};
+        data.id = id;
+        data.recordStatusId = 3;
+        await axios.post('/updateCart', data).then(res => {
+            if (res.data.response.returnStatus === true) {
+                location.reload();
+                document.getElementById(id).remove();
+                document.getElementById("totalAmount").textContent = res.data.totalAmount;
+                document.getElementById("totalCount").textContent = res.data.totalCount;
+            }
+        })
+    }
+
+    async function saveForLater(id, status) {
+        //quantityWarningDiv.hidden = true;
+        // status 1 is saveForLater, status 2 is selectProduct and status 3 is move to cart
+        let checkBox, data = {};
+        data.Id = id;
+        if (status != 3) {
+            checkBox = document.getElementById(`selectProductStatusBtn${id}`);
+            data.selectProductStatus = checkBox.checked == true ? true : false;
+        }
+        data.saveForLaterStatus = status == 1 ? true : false;
+        if (status == 1 || status == 3) data.selectProductStatus = true;
+        data.status = status;
+        await axios.post('/updateCart', data).then(async res => {
+            console.log(res.data);
+            if (status == 1 || status == 3) location.reload();
+            document.getElementById("totalAmount").textContent = res.data.totalAmount;
+            document.getElementById("totalCount").textContent = res.data.selectedSubTotalCount;
+        })
+    }
+
+    async function checkLimitPerUser(limitPerUser, Id, colorId, sizeId) {
+        //quantityWarningDiv = document.getElementById(`productQuantity${Id}`).value;
+        let quantity = document.getElementById(`productQuantity${colorId}${sizeId}`).value;
+        if (quantity == "0" || quantity == "") {
+            return
+        }
+        console.log(typeof quantity);
+        console.log(limitPerUser);
+        let quantityWarningDiv = document.getElementById("quantityWarningDiv")
+        if (Number(limitPerUser) < Number(quantity)) {
+            quantityWarningDiv.hidden = false;
+            quantity = limitPerUser;
+            document.getElementById(`productQuantity${colorId}${sizeId}`).value = limitPerUser;
+            document.getElementById('warningContent').innerHTML = `This seller has only ${limitPerUser} of these available. To see if more are available from another seller`
+            // go to the <a href="/productDetails/${Id}" styl="color:blue !important"> product detail page.</a>`
+        }
+        else {
+            quantityWarningDiv.hidden = true;
+        }
+        let data = {
+            productId: Id,
+            quantityUpdateStatus: true,
+            quantity: quantity,
+            colorId: colorId,
+            sizeId: sizeId,
+        }
+        console.log("data", data);
+        console.log("limitPerUser", limitPerUser);
+        console.log("quantity", typeof quantity);
+        console.log("quantity", typeof quantity);
+
+        axios.post('/updateCart', data).then(res => {
+            console.log("response", res.data)
+
+            document.getElementById("totalAmount").textContent = res.data.totalAmount;
+            document.getElementById("totalCount").textContent = res.data.selectedSubTotalCount;
+        })
+        //quantityWarningDiv
+        // console.log(Id);
+
+    }
+</script>
+
+<style>
+    .productName {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .warningBorder {
+        width: 91%;
+        height: ;
+        border-style: solid;
+        border-color: #FFAF38;
+        border-radius: 7px;
+        border-left-width: 12px;
+    }
+
+    .btn-style-qq {
+        border: .1px solid rgb(193, 193, 193);
+        text-transform: none;
+        border-radius: 13px;
+        font-size: 14px;
+        font-weight: normal;
+        box-shadow: 0px 3px 7px 0px rgb(187, 187, 187);
+    }
+</style>

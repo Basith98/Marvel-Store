@@ -1,0 +1,171 @@
+<div class="container-fluid bg-soft">
+    <div class="row">
+        <div class="col-12 mt-5">
+
+            <div class="table-settings mb-4 mt-5">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col col-md-6 col-lg-3 col-xl-4">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon2"><span class="fas fa-search"></span></span>
+                            <input type="text" class="form-control" id="exampleInputIconLeft" placeholder="Search"
+                                aria-label="Search" aria-describedby="basic-addon2">
+                        </div>
+                    </div>
+                    <div class="col-3 col-md-2 col-xl-1 pl-md-0 mr-3 text-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal" data-whatever="@mdo">Add size</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add new size</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" id="saveColor" action="/admin/updateSize">
+                                <div class="form-group">
+                                    <label class="form-label" for="basic-default-fullname">Size</label>
+                                    <input type="select" required="required" name="size" value=" " label="hello"
+                                        class="form-control" id="basic-default-fullname" placeholder="size" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="basic-default-fullname">Size
+                                        Map</label>
+                                    <input type="select" required="required" name="sizeMap"
+                                        value="{{categoryDetails.name}}" label="hello" class="form-control"
+                                        id="basic-default-fullname" placeholder="please define the size map" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Description:</label>
+                                    <textarea class="form-control" name="description" id="message-text"></textarea>
+                                </div>
+
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" onclick="form_submit()"
+                                value="submit" />Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-body border-light shadow-sm table-wrapper table-responsive pt-0">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>SLNO</th>
+                            <th>Size Map</th>
+                            <th>Size</th>
+                            <th>Descirption</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Item -->
+                        {{#each sizes}}
+                        <tr>
+                            <td></td>
+                            <td><span class="font-weight-normal">{{this.sizeMap}}</span></td>
+                            <td>
+                                <div class="badge bg-success text-wrap pt-1" style="width: 3rem; height: 1.2rem">
+                                    {{this.size}}
+                                </div>
+                            </td>
+                            <td><span class="font-weight-normal">{{this.description}}</span></td>
+
+            </div>
+            </td>
+
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="icon icon-sm">
+                            <span class="fas fa-ellipsis-h icon-dark"></span>
+                        </span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="../invoice.html"><span class="fas fa-eye mr-2"></span>View
+                            Details</a>
+                        <a class="dropdown-item" href="#"><span class="fas fa-edit mr-2"></span>Edit</a>
+                        <a class="dropdown-item text-danger" href="#"><span
+                                class="fas fa-trash-alt mr-2"></span>Remove</a>
+                    </div>
+                </div>
+            </td>
+            </tr>
+            {{/each}}
+
+            </tbody>
+            </table>
+            <div class="card-footer px-3 border-0 d-flex align-items-center justify-content-between">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination mb-0">
+                        <li class="page-item">
+                            <a class="page-link" href="#">Previous</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="font-weight-bold small">Showing <b>5</b> out of <b>25</b> entries</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+    function form_submit() {
+        $('#exampleModal').modal('toggle');
+        /*Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'color details saved successfully',
+            showConfirmButton: false,
+            timer: 1500
+        })*/
+        document.getElementById("saveColor").submit();
+    }    
+</script>
+
+<style>
+    table {
+        counter-reset: Serial;
+    }
+
+    tr td:first-child:before {
+        counter-increment: Serial;
+        /* Increment the Serial counter */
+        content: counter(Serial);
+        /* Display the counter */
+    }
+</style>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Marvel-Sports</title>
+  <link rel="icon" href="/images/My_logo-removebg-preview.png">
+  <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <meta name="keywords"
+    content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+  <meta name="author" content="Codedthemes" />
+  <!-- Favicon icon -->
+  {{!--
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script> --}}
+</head>
+
+<body>
+
+  {{!-- <h1>hellllooooooooo</h1> --}}
+  <!-- Pre-loader start -->
+  {{#if admin}}
+  {{>adminHeader}}
+  {{else if noPartials}}
+  {{{body}}}
+  {{else}}
+  {{>userHeader}}
+  {{/if}}
+
+
+
+</body>
+
+</html>

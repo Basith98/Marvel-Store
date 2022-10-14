@@ -1,0 +1,72 @@
+<div class="customer-login">
+    <br> <br>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <!--login area start-->
+            <div class="col-lg-6 col-md-6">
+                <div class="account_form" data-aos="fade-up" data-aos-delay="0">
+                    <h3>login</h3>
+                    <form action="/checkLogin" method="POST">
+                        {{#if wrongCredentials}}
+                        <div class="default-form-box bg-light p-1">
+                            <p style="color: red;">{{message}}</p>
+                        </div>
+                        {{/if}}
+                        <div class="default-form-box">
+                            <label>Username or email <span>*</span></label>
+                            <input name="email" type="text">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Passwords <span>*</span></label>
+                            <input type="password" name="password">
+                        </div>
+                        <div class="login_submit">
+                            <button class="btn btn-md btn-black-default-hover mb-4" type="submit">login</button>
+                            <label class="checkbox-default mb-4" for="offer">
+                                <input type="checkbox" id="offer">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#">Lost your password?</a>
+                            <a href="/signUpForm" class="mt-4"><b>Sign Up</b></a>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--login area start-->
+
+            <!--register area start-->
+            {{!-- <div class="col-lg-6 col-md-6">
+                <div class="account_form register" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Register</h3>
+                    <form action="/userRegister" id="signUpForm" method="post">
+                        <div class="default-form-box">
+                            <label>Email address <span>*</span></label>
+                            <input type="text" name="email">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Email address <span>*</span></label>
+                            <input type="text" name="email">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Email address <span>*</span></label>
+                            <input type="text" name="email">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Passwords <span>*</span></label>
+                            <input type="password" name="password">
+                        </div>
+                        {{#if isExist}}
+                        <p style="color: red;">{{message}}</p>
+                        {{/if}}
+                        <div class="login_submit">
+                            <button class="btn btn-md btn-black-default-hover" type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div> --}}
+            <!--register area end-->
+        </div>
+    </div>
+    <br> <br>
+</div>
