@@ -49,6 +49,7 @@ module.exports = {
         response.userCredentialsStatus = await bcrypt
           .compare(userCredentials.password, isUserEmailExist[0].password)
           .then((status) => {
+            console.log(status);
             response.returnMessage = status
               ? ""
               : "Invalid username or password";

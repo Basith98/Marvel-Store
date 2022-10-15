@@ -50,7 +50,7 @@ module.exports = {
         response.userStatus == "admin"
       ) {
         return res.render("user/loginAndSignUp/login", {
-          userCredentialsStatus: false,
+          wrongCredentials: true,
           message: response.returnMessage,
         });
       } else if (response.returnStatus == false) {
@@ -69,7 +69,9 @@ module.exports = {
         // console.log("token", token);
         // let decodedToken = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
         // console.log("decodeToken", decodedToken);
-        res.redirect(`${req.session.originalUrl}`);
+        req.session.originalUrl
+          ? res.redirect(`${req.session.originalUrl}`)
+          : res.redirect(`/`);
       }
     } catch (e) {
       console.error(e);
