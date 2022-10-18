@@ -3,6 +3,8 @@
     <div class="main-body">
         <div class="page-wrapper">
             <!-- Page-body start -->
+
+
             <div class="page-body">
                 <div class="row">
 
@@ -121,6 +123,107 @@
                         </div>
                     </div>
 
+                    <input type="text" id="sunday" value="{{sunday}}" hidden>
+                    <input type="text" id="monday" value="{{monday}}" hidden>
+                    <input type="text" id="tuesday" value="{{tuesday}}" hidden>
+                    <input type="text" id="wednesday" value="{{wednesday}}" hidden>
+                    <input type="text" id="thursday" value="{{thursday}}" hidden>
+                    <input type="text" id="friday" value="{{friday}}" hidden>
+                    <input type="text" id="saturday" value="{{saturday}}" hidden>
+
+                    <div class="col-xl-12 col-md-12 col-lg-12 mb-5">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="chart-container bgcolor">
+                                    <div class="base"></div>
+                                    <!-- Left Side Meter-->
+                                    <ul class="meter">
+                                        <li>
+                                            <div>₹50,000</div>
+                                        </li>
+                                        <li>
+                                            <div>₹40,000</div>
+                                        </li>
+                                        <li>
+                                            <div>₹30,000</div>
+                                        </li>
+                                        <li>
+                                            <div>₹20,000</div>
+                                        </li>
+                                        <li>
+                                            <div>Below ₹10,000</div>
+                                        </li>
+                                    </ul>
+                                    <!-- Background-Grid -->
+                                    <table>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                    <!-- End Background Grid -->
+
+                                    <div class="bar one" id="firstBar" style="color: blue;">Sun</div>
+                                    <div class="bar two" id="secondBar" style="color: blue;">Mon</div>
+                                    <div class="bar three" id="thirdBar" style="color: blue;">Tue</div>
+                                    <div class="bar four" id="fourthBar" style="color: blue;">Wed</div>
+                                    <div class="bar five" id="fifthBar" style="color: blue;">Thur</div>
+                                    <div class="bar six" id="sixthBar" style="color: blue;">Fri</div>
+                                    <div class="bar seven" id="seventhBar" style="color: blue;">Sat</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
                     <!-- Material statustic card start -->
                     <div class="col-xl-4 col-md-12">
                         <div class="card mat-stat-card">
@@ -230,6 +333,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-xl-4 col-md-12">
                         <div class="card mat-clr-stat-card text-white green ">
                             <div class="card-block">
@@ -258,6 +362,10 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
                     <!-- Material statustic card end -->
                     <!-- order-visitor start -->
 
@@ -268,7 +376,7 @@
                     <div class="col-xl-6 col-md-12">
                         <div class="card table-card">
                             <div class="card-header">
-                                <h5>Member’s performance</h5>
+                                <h5>Latest Members</h5>
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -283,70 +391,21 @@
                                 <div class="table-responsive">
                                     <table class="table table-hover m-b-0 without-header">
                                         <tbody>
+                                            {{#each users}}
                                             <tr>
                                                 <td>
                                                     <div class="d-inline-block align-middle">
-                                                        <img src="assets/images/avatar-4.jpg" alt="user image"
-                                                            class="img-radius img-40 align-top m-r-15">
+                                                        <img src="/images/account/default._CR0,0,1024,1024_SR50,50_.jpg"
+                                                            alt="user image" class="img-radius img-40 align-top m-r-15">
                                                         <div class="d-inline-block">
-                                                            <h6>Shirley Hoe</h6>
-                                                            <p class="text-muted m-b-0">Sales executive , NY</p>
+                                                            <h6>{{this.name}}</h6>
+                                                            <p class="text-muted m-b-0">{{this.email}}</p>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="text-right">
-                                                    <h6 class="f-w-700">$78.001<i
-                                                            class="fas fa-level-down-alt text-c-red m-l-10"></i></h6>
-                                                </td>
+
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-inline-block align-middle">
-                                                        <img src="assets/images/avatar-2.jpg" alt="user image"
-                                                            class="img-radius img-40 align-top m-r-15">
-                                                        <div class="d-inline-block">
-                                                            <h6>James Alexander</h6>
-                                                            <p class="text-muted m-b-0">Sales executive , EL</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-right">
-                                                    <h6 class="f-w-700">$89.051<i
-                                                            class="fas fa-level-up-alt text-c-green m-l-10"></i></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-inline-block align-middle">
-                                                        <img src="assets/images/avatar-4.jpg" alt="user image"
-                                                            class="img-radius img-40 align-top m-r-15">
-                                                        <div class="d-inline-block">
-                                                            <h6>Shirley Hoe</h6>
-                                                            <p class="text-muted m-b-0">Sales executive , NY</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-right">
-                                                    <h6 class="f-w-700">$89.051<i
-                                                            class="fas fa-level-up-alt text-c-green m-l-10"></i></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-inline-block align-middle">
-                                                        <img src="assets/images/avatar-2.jpg" alt="user image"
-                                                            class="img-radius img-40 align-top m-r-15">
-                                                        <div class="d-inline-block">
-                                                            <h6>Nick Xander</h6>
-                                                            <p class="text-muted m-b-0">Sales executive , EL</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-right">
-                                                    <h6 class="f-w-700">$89.051<i
-                                                            class="fas fa-level-up-alt text-c-green m-l-10"></i></h6>
-                                                </td>
-                                            </tr>
+                                            {{/each}}
                                         </tbody>
                                     </table>
 
@@ -424,6 +483,10 @@
                         </div>
                     </div>
 
+
+
+
+
                     <!--  sale analytics end -->
 
                     <!-- Project statustic start -->
@@ -436,3 +499,247 @@
         <div id="styleSelector"> </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script>
+    window.onload = function () {
+        console.log("sunday", typeof document.getElementById('tuesday').value)
+        document.getElementById('firstBar').style.height = document.getElementById('sunday').value + "%";
+        document.getElementById('secondBar').style.height = document.getElementById('monday').value + "%";
+        document.getElementById('thirdBar').style.height = document.getElementById('tuesday').value + "%";
+        document.getElementById('fourthBar').style.height = document.getElementById('wednesday').value + "%";
+        document.getElementById('fifthBar').style.height = document.getElementById('thursday').value + "%";
+        document.getElementById('sixthBar').style.height = document.getElementById('friday').value + "%";
+        document.getElementById('seventhBar').style.height = document.getElementById('saturday').value + "%";
+
+    };
+</script>
+
+<style>
+    .bgcolor {
+
+        background-color: #222;
+        font-family: 'Helvetica Neue', Helvetica, sans-serif;
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    h1 {
+        margin: 60px auto 0;
+        width: 350px;
+        text-align: center;
+        font-size: 26px;
+    }
+
+    .base {
+        position: absolute;
+        bottom: 0;
+        left: -35px;
+        width: 825px;
+        height: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        -moz-transform: skew(45deg);
+        -o-transform: skew(45deg);
+        -webkit-transform: skew(45deg);
+    }
+
+    .chart-container {
+        position: relative;
+        z-index: 0;
+        margin: 100px auto 0;
+        width: 800px;
+        height: 500px;
+        /*border: solid 1px #bbb;*/
+        background-color: rgba(255, 255, 255, 0.055);
+        /*  -webkit-box-shadow: 0 8px 6px -6px #444;
+*/
+    }
+
+    .chart-container:after {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -8px;
+        height: 15px;
+        width: 800px;
+        background-color: rgba(255, 255, 255, 0.055);
+        -moz-transform: skew(45deg);
+        -o-transform: skew(45deg);
+        -webkit-transform: skew(45deg);
+        transform: skew(45deg);
+    }
+
+    .chart-container>table {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -999;
+        width: 100%;
+        height: 100%;
+    }
+
+    .chart-container table tr td {
+        width: 100px;
+        height: 98x;
+        border: solid 1px rgba(255, 255, 255, 0.05);
+
+    }
+
+    .meter {
+        position: relative;
+        top: 0px;
+        left: -30px;
+        height: 500px;
+        width: 30px;
+        background-color: rgba(20, 113, 163, 0.5);
+        border-left: solid 1px rgba(255, 255, 255, 0.5);
+
+    }
+
+    .meter:before {
+        content: "";
+        position: absolute;
+        top: -7px;
+        left: -15px;
+        width: 15px;
+        height: 500px;
+        background-color: rgba(14, 81, 117, 0.9);
+        -moz-transform: skewY(45deg);
+        -o-transform: skewY(45deg);
+        -webkit-transform: skewY(45deg);
+        transform: skewY(45deg);
+    }
+
+    .meter:after {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -8px;
+        width: 30px;
+        height: 15px;
+        background-color: rgba(13, 171, 217, 0.45);
+        -moz-transform: skewX(45deg);
+        -o-transform: skewX(45deg);
+        -webkit-transform: skewX(45deg);
+        transform: skewX(45deg);
+    }
+
+    .meter li {
+        position: relative;
+        list-style-type: none;
+        height: 99px;
+        border-bottom: solid 1px #0DABD9;
+    }
+
+    .meter li:before {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -30px;
+        width: 30px;
+        height: 100%;
+        border-bottom: solid 1px #0DABD9;
+        -moz-transform: skewY(45deg);
+        -o-transform: skewY(45deg);
+        -webkit-transform: skewY(45deg);
+        transform: skewY(45deg);
+    }
+
+    .meter li:last-child {
+        border-bottom: none;
+    }
+
+    .meter li:last-child:before {
+        border: 0;
+    }
+
+    .meter li div {
+        position: absolute;
+        left: -115px;
+        top: 0;
+        padding: 55px 0 0;
+        width: 80px;
+        color: #656565;
+        text-align: right;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 18px;
+        text-transform: uppercase;
+    }
+
+
+    /* ---------------------
+  Vertical Bars
+----------------------*/
+
+    .bar {
+        float: left;
+        position: absolute;
+        bottom: 0;
+        z-index: 99;
+        height: ;
+        width: 40px;
+        margin: 0 40px;
+        background-color: rgba(107, 255, 49, 0.35);
+    }
+
+    .bar:before {
+        content: "";
+        position: absolute;
+        left: -15px;
+        bottom: 7px;
+        height: 100%;
+        width: 15px;
+        background-color: rgba(107, 255, 49, 0.25);
+        -webkit-transform: skewY(45deg);
+    }
+
+    .bar:after {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -8px;
+        width: 40px;
+        height: 15px;
+        background-color: rgba(107, 255, 49, 0.45);
+        -moz-transform: skewX(45deg);
+        -o-transform: skewX(45deg);
+        -webkit-transform: skewX(45deg);
+        transform: skewX(45deg);
+    }
+
+    .two {
+        left: 12.5%;
+        height: 17%;
+    }
+
+    .three {
+        left: 25%;
+        height: 85%;
+    }
+
+    .four {
+        left: 37.5%;
+        height: 35%;
+    }
+
+    .five {
+        left: 50%;
+        height: 63%;
+    }
+
+    .six {
+        left: 62.5%;
+        height: 45%;
+    }
+
+    .seven {
+        left: 75%;
+        height: 15%;
+    }
+
+    .eight {
+        left: 87.5%;
+        height: 32%;
+    }
+</style>

@@ -53,6 +53,12 @@ module.exports = {
         },
       ]);
 
+      let lastWeekOrder = await Order.find({
+        currentStatus: "delivered",
+        updatedAt: { $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000) },
+      });
+
+      response.lastWeekOrder = lastWeekOrder;
       response.orders = Orders;
       response.returnStatus = true;
       return response;

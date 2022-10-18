@@ -2,9 +2,9 @@ const DashboardRepository = require("../repository/noSqlRepository/dashboardNoSq
 const uploadS3 = require("../../../shared/providers/setUpImageDetails");
 
 module.exports = {
-  getProductDetails: async () => {
+  getProductDetailsAndUsers: async () => {
     console.log("Getting");
-    return await DashboardRepository.getProductDetails();
+    return await DashboardRepository.getProductDetailsAndUsers();
   },
 
   getDashboards: async () => {

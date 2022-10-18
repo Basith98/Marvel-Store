@@ -3,9 +3,10 @@ const Product = require("./models/productSchema");
 var arrayToTree = require("array-to-tree");
 const mongoose = require("mongoose");
 const Payment = require("../../../user/repository/noSqlRepository/models/paymentSchema");
+const User = require("../../../user/repository/noSqlRepository/models/userSchema");
 
 module.exports = {
-  getProductDetails: async () => {
+  getProductDetailsAndUsers: async () => {
     try {
       let response = {};
       let totalProducts = await Product.find({ recordStatusId: 1 }).count();
@@ -25,6 +26,13 @@ module.exports = {
           },
         },
       ]);
+      let users = await User.find({
+        recordStatusId: 1,
+        status: { $ne: "admin" },
+      })
+        .sort({ createdAt: -1 })
+        .limit(5);
+      response.users = users;
       response.totalProducts = totalProducts;
       response.totalIncome = totalIncome;
       return response;
