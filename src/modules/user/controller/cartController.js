@@ -9,7 +9,7 @@ module.exports = {
         totalAmountAndCount,
         cartStatus,
         isCartAndSaveLaterEmpty,
-        userId = "631b1a462b94a448c455b357";
+        userId = req.session.userId;
       cartStatus = true;
       response = await CartService.getCarts(userId);
       category = await CategoryService.getParentCategories(0);
@@ -43,7 +43,7 @@ module.exports = {
     try {
       let totalCount, totalAmount, cartStatus, product;
       product = req.body;
-      product.userId = "631b1a462b94a448c455b357";
+      product.userId = req.session.userId;
       console.log("product ", product);
       let response = await CartService.updateCart(product);
       let singlecart = await CartService.getOneCartProductDetails(product);

@@ -15,7 +15,7 @@ module.exports = {
     try {
       let coupon = {};
       let categoryId = 0;
-      coupon.userId = "631b1a462b94a448c455b357";
+      coupon.userId = req.session.userId;
       let category = await CategoryService.getParentCategories(categoryId);
       let response = await CouponService.getUerCoupons(coupon);
       let isExpired = response.coupons.filter((elem) => elem.isExpired);
@@ -42,7 +42,7 @@ module.exports = {
         coupon,
         couponDetails = {};
       coupon = req.body;
-      coupon.userId = "631b1a462b94a448c455b357";
+      coupon.userId = req.session.userId;
       let result = await CouponService.getCoupons(coupon);
 
       result.coupons.map((coupon) => {

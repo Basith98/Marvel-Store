@@ -7,7 +7,7 @@ module.exports = {
       let response,
         category,
         categoryId = req.params.id;
-      let userId = "631b1a462b94a448c455b357";
+      let userId = req.session.userId;
       let totalAmountAndCount = await CartService.getTotalAmountAndCount(
         userId
       );
@@ -68,7 +68,7 @@ module.exports = {
       response = {};
     try {
       categoryId = 0;
-      let userId = "631b1a462b94a448c455b357";
+      let userId = req.session.userId;
       let totalAmountAndCount = await CartService.getTotalAmountAndCount(
         userId
       );

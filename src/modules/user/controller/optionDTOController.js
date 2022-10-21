@@ -5,7 +5,7 @@ module.exports = {
     try {
       let response,
         data = [];
-      let userId = "631b1a462b94a448c455b357";
+      let userId = req.session.userId;
       response = await CartService.getTotalAmountAndCount(userId);
       data.push(response);
       console.log("DTO", data);

@@ -9,7 +9,7 @@ module.exports = {
   getOrderDetails: async (req, res) => {
     try {
       let categoryId = 0,
-        userId = "631b1a462b94a448c455b357";
+        userId = req.session.userId;
       let category = await CategoryService.getParentCategories(categoryId);
       let response = await OrderService.getOrders(userId);
       let confirmedOrders = response.Orders.filter(
@@ -53,7 +53,7 @@ module.exports = {
     try {
       let address = {};
       console.log("getOrder");
-      address.userId = "631b1a462b94a448c455b357";
+      address.userId = req.session.userId;
       let addresses = await AddressService.getAddresses(address);
       console.log("address: " + addresses);
       res.render("user/order/deliveryAddressSection", {
@@ -70,7 +70,7 @@ module.exports = {
     req.session.paymentMethod = req.body.paymentMethod;
     let data = {
       addressId: req.session.addressId,
-      userId: "631b1a462b94a448c455b357",
+      userId: req.session.userId,
     };
     let response = await OrderService.getplaceOrderSections(data);
     let totalAmountAndCount = await CartService.getTotalAmountAndCount(
@@ -100,7 +100,7 @@ module.exports = {
         totalDiscount,
         couponStatus = false;
       let addressId = req.session.addressId;
-      let userId = "631b1a462b94a448c455b357";
+      let userId = req.session.userId;
 
       let orderedProducts = await OrderService.getCartProductsAndUpdateCart(
         userId
@@ -171,7 +171,7 @@ module.exports = {
         order: req.body.order,
         payment: req.body.payment,
         Id: 1,
-        userId: "631b1a462b94a448c455b357",
+        userId: req.session.userId,
       };
       let response = await OrderService.updateOrder(orderDetails);
       if (response.returnStatus == false) {
