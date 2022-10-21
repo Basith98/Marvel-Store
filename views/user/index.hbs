@@ -133,6 +133,20 @@
                     <!-- Start Banner Single Item -->
                     <div class="banner-single-item banner-style-1 banner-animation img-responsive" data-aos="fade-up"
                         data-aos-delay="0">
+                        {{#if subBanner}}
+                        <div class="image">
+                            <img src={{subBanner.0.imageUrl}} alt="" height="600px" width="90%">
+                        </div>
+                        <div class="content">
+                            {{!-- <h4 class="title">Mini rechargeable
+                                Table Lamp - E216</h4>
+                            <h5 class="sub-title">We design your home</h5> --}}
+                            <a href="/firstLevelCategory/{{subBanner.0.categoryId}}"
+                                class="btn btn-lg btn-outline-golden icon-space-left"><span
+                                    class="d-flex align-items-center">discover now <i
+                                        class="ion-ios-arrow-thin-right"></i></span></a>
+                        </div>
+                        {{else}}
                         <div class="image">
                             <img src="images/football/294.jpg" alt="">
                         </div>
@@ -145,6 +159,7 @@
                                     class="d-flex align-items-center">discover now <i
                                         class="ion-ios-arrow-thin-right"></i></span></a>
                         </div>
+                        {{/if}}
                     </div>
                     <!-- End Banner Single Item -->
                 </div>
@@ -156,15 +171,25 @@
                             <div class="banner-single-item banner-style-2 banner-animation img-responsive"
                                 data-aos="fade-up" data-aos-delay="0">
                                 <div class="image">
+                                    {{#if productBanners}}
+                                    <div class="image">
+                                        <img src={{productBanners.firstProduct.imageUrl}} height="300vh" alt="">
+                                    </div>
+                                    <div class="content">
+                                        {{!-- <h4 class="title">Sofas and <br>
+                                            Armchairs</h4> --}}
+                                        <a href="/productDetails/{{productBanners.firstProduct.productId}}"
+                                            class="link-text"><span>Shop
+                                                now</span></a>
+                                    </div>
+                                    {{else}}
                                     <img src="https://static.wixstatic.com/media/2f4239_3f6376f02aa54ebcbcc38e12cdd5a869~mv2.gif"
                                         height="300vh" alt="">
+                                    {{/if}}
+
                                 </div>
-                                <div class="content">
-                                    {{!-- <h4 class="title">Kitchen <br>
-                                        utensils</h4> --}}
-                                    <a href="product-details-default.html" class="link-text"><span>Shop
-                                            now</span></a>
-                                </div>
+
+
                             </div>
                         </div>
                         <!-- End Banner Single Item -->
@@ -172,16 +197,25 @@
                         <div class="col-lg-6 col-sm-6 mb-6">
                             <div class="banner-single-item banner-style-2 banner-animation img-responsive"
                                 data-aos="fade-up" data-aos-delay="200">
+                                {{#if productBanners}}
                                 <div class="image">
-                                    <img src="https://static.wixstatic.com/media/2f4239_55510f1ffe5243378b4ff8d49fabdb52~mv2.gif"
-                                        height="300vh" alt="">
+                                    <img src={{productBanners.secondProduct.imageUrl}} height="300vh" alt="">
                                 </div>
                                 <div class="content">
                                     {{!-- <h4 class="title">Sofas and <br>
                                         Armchairs</h4> --}}
-                                    <a href="product-details-default.html" class="link-text"><span>Shop
+                                    <a href="/productDetails/{{productBanners.secondProduct.productId}}"
+                                        class="link-text"><span>Shop
                                             now</span></a>
                                 </div>
+                                {{else}}
+                                <div class="image">
+                                    <img src="https://static.wixstatic.com/media/2f4239_55510f1ffe5243378b4ff8d49fabdb52~mv2.gif"
+                                        height="300vh" alt="">
+                                </div>
+
+                                {{/if}}
+
                             </div>
                         </div>
                         <!-- End Banner Single Item -->
@@ -189,16 +223,24 @@
                         <div class="col-lg-6 col-sm-6 mb-6">
                             <div class="banner-single-item banner-style-2 banner-animation img-responsive"
                                 data-aos="fade-up" data-aos-delay="0">
+                                {{#if productBanners}}
+                                <div class="image">
+                                    <img src={{productBanners.thirdProduct.imageUrl}} height="300vh" alt="">
+                                </div>
+                                <div class="content">
+                                    {{!-- <h4 class="title">Sofas and <br>
+                                        Armchairs</h4> --}}
+                                    <a href="/productDetails/{{productBanners.thirdProduct.productId}}"
+                                        class="link-text"><span>Shop
+                                            now</span></a>
+                                </div>
+                                {{else}}
                                 <div class="image">
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Joma_soccer_boot.gif"
                                         alt="">
                                 </div>
-                                <div class="content">
-                                    {{!-- <h4 class="title">Chair & Bar<br>
-                                        stools</h4>--}}
-                                    <a href="product-details-default.html" class="link-text"><span>Shop
-                                            now</span></a>
-                                </div>
+
+                                {{/if}}
                             </div>
                         </div>
                         <!-- End Banner Single Item -->
@@ -206,15 +248,24 @@
                         <div class="col-lg-6 col-sm-6 mb-6">
                             <div class="banner-single-item banner-style-2 banner-animation img-responsive"
                                 data-aos="fade-up" data-aos-delay="200">
+                                {{#if productBanners}}
+                                <div class="image">
+                                    <img src={{productBanners.fourthProduct.imageUrl}} height="300vh" alt="">
+                                </div>
+                                <div class="content">
+                                    {{!-- <h4 class="title">Sofas and <br>
+                                        Armchairs</h4> --}}
+                                    <a href="/productDetails/{{productBanners.fourthProduct.productId}}"
+                                        class="link-text"><span>Shop
+                                            now</span></a>
+                                </div>
+                                {{else}}
                                 <div class="image">
                                     <img src="https://c.tenor.com/qjsB1Yy7Ci4AAAAC/inazuma-eleven-go-chrono-stone-inago-cs.gif"
                                         alt="">
                                 </div>
-                                <div class="content">
-                                    {{!-- <h4>Interior <br>
-                                        lighting</h4> --}}
-                                    <a href="product-details-default.html"><span>Shop now</span></a>
-                                </div>
+
+                                {{/if}}
                             </div>
                         </div>
                         <!-- End Banner Single Item -->
@@ -228,7 +279,7 @@
 <!-- End Banner Section -->
 
 <!-- Start Product Default Slider Section -->
-<div class="product-default-slider-section section-top-gap-100 section-fluid">
+<div class="product-default-slider-section section-top-gap-100 section-fluid mb-5">
     <!-- Start Section Content Text Area -->
     <div class="section-title-wrapper" data-aos="fade-up" data-aos-delay="0">
         <div class="container">
@@ -267,7 +318,7 @@
                                             <span>sale</span>
                                         </div>
                                         <div class="action-link">
-                                            <div class="action-link-left">
+                                            {{!-- <div class="action-link-left">
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add to
                                                     Cart</a>
                                             </div>
@@ -276,7 +327,7 @@
                                                         class="icon-magnifier"></i></a>
                                                 <a href="wishlist.html"><i class="icon-heart"></i></a>
                                                 <a href="compare.html"><i class="icon-shuffle"></i></a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="content">
@@ -292,7 +343,7 @@
                                             </ul>
                                         </div>
                                         <div class="content-right">
-                                            <span class="price">$75.00 - $85.00</span>
+                                            <span class="price">₹{{this.colorAndSizeVariation.0.Price}}</span>
                                         </div>
 
                                     </div>
@@ -313,7 +364,7 @@
 <!-- End Product Default Slider Section -->
 
 <!-- Start Banner Section -->
-<div class="banner-section section-top-gap-100">
+{{!-- <div class="banner-section section-top-gap-100">
     <div class="container">
         <div class="row">
             <div class="col-xl-8 offset-xl-2">
@@ -337,11 +388,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- End Banner Section -->
 
 <!-- Start Product Default Slider Section -->
-<div class="product-default-slider-section section-top-gap-100 section-fluid section-inner-bg">
+{{!-- <div class="product-default-slider-section section-top-gap-100 section-fluid section-inner-bg">
     <!-- Start Section Content Text Area -->
     <div class="section-title-wrapper" data-aos="fade-up" data-aos-delay="0">
         <div class="container">
@@ -698,11 +749,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- End Product Default Slider Section -->
 
 <!-- Start Banner Section -->
-<div class="banner-section">
+{{!-- <div class="banner-section">
     <div class="banner-wrapper clearfix">
         <!-- Start Banner Single Item -->
         <div class="banner-single-item banner-style-4 banner-animation banner-color--golden float-left img-responsive"
@@ -765,11 +816,11 @@
         </div>
         <!-- End Banner Single Item -->
     </div>
-</div>
+</div> --}}
 <!-- End Banner Section -->
 
 <!-- Start Blog Slider Section -->
-<div class="blog-default-slider-section section-top-gap-100 section-fluid">
+{{!-- <div class="blog-default-slider-section section-top-gap-100 section-fluid">
     <!-- Start Section Content Text Area -->
     <div class="section-title-wrapper" data-aos="fade-up" data-aos-delay="0">
         <div class="container">
@@ -948,11 +999,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- End Blog Slider Section -->
 
 <!-- Start Instagramr Section -->
-<div class="instagram-section section-top-gap-100 section-inner-bg">
+{{!-- <div class="instagram-section section-top-gap-100 section-inner-bg">
     <div class="instagram-wrapper" data-aos="fade-up" data-aos-delay="0">
         <div class="container">
             <div class="row">
@@ -987,4 +1038,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}

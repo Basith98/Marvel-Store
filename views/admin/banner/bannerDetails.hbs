@@ -1,0 +1,265 @@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/javascripts/comboTreePlugin.js" type="text/javascript"></script>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css" />
+<link rel="stylesheet" href="/stylesheets/style copy.css" />
+
+
+
+<div class="container-fluid bg-soft">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <class class="layout-container">
+                <div class="layout-page">
+                    <div class="content-wrapper">
+                        <div class="card" style="background-color: rgb(247, 247, 247);">
+                            <form action="/admin/updateBanner" method="post" enctype="multipart/form-data">
+                                <div class="card-header">
+                                    <h5>Banner</h5>
+                                    <span>Please try to fill out all the form feild</span>
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">Banner Information</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row gx-5">
+                                                <div class="col-12 col-lg-6 mt-4">
+                                                    <label class="form-label" for="basic-default-fullname">Banner
+                                                        Name</label>
+                                                    <input type="select" name="name" label="hello" class="form-control"
+                                                        id="basic-default-fullname" placeholder="name"
+                                                        required="required" />
+                                                </div>
+
+                                                <div class="col-12 col-lg-6 mt-4">
+                                                    <label class="form-label" for="basic-default-fullname">Zone</label>
+                                                    {{!-- <input type="select" name="zone" label="hello"
+                                                        class="form-control" id="basic-default-fullname"
+                                                        placeholder="Select banner zone" required="required" /> --}}
+                                                    <select type="select" name="zone" label="hello" placeholder="zone"
+                                                        class="form-control" id="zoneSection" onchange="viewSections()"
+                                                        required>
+                                                        <option value="" disabled="">--Select State--</option>
+                                                        <option value="{{u.state}}">{{u.state}}</option>
+                                                        <option value="mainBanner">Main Banner
+                                                        </option>
+                                                        <option value="subBanner">sub Banner
+                                                        </option>
+                                                        <option value="1stproductBanner">1st Product Banner
+                                                        </option>
+                                                        <option value="2ndproductBanner">2nd Product Banner
+                                                        </option>
+                                                        <option value="3rdproductBanner">3rd Product Banner
+                                                        </option>
+                                                        <option value="4thproductBanner">4th Product Banner
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-12 col-lg-6 mt-4">
+                                                    <label class="form-label" for="basic-default-fullname">Image</label>
+                                                    <input type="file" name="image" value="{{categoryDetails.name}}"
+                                                        label="hello" class="form-control" id="basic-default-fullname"
+                                                        placeholder="Minimum purchase" required="required" />
+                                                </div>
+
+                                                <div class="col-12 col-lg-6 mt-4" id="categorySection" hidden>
+                                                    <label class="form-label"
+                                                        for="basic-default-fullname">Category</label>
+                                                    <input type="text" name="categoryId"
+                                                        value="{{categoryDetails.parent}}" id="justAnotherInputBox"
+                                                        placeholder="Type to filter" autocomplete="on" />
+                                                </div>
+
+                                                <div class="col-12 col-lg-6 mt-4" id="productDivSection" hidden>
+                                                    <label class="form-label" for="basic-default-fullname">Select
+                                                        Product</label>
+                                                    <select type="select" name="productId" label="hello"
+                                                        class="form-control" id="productSections"
+                                                        placeholder="Select Product">
+                                                </div>
+
+
+
+
+                                                <div class="col-12 col-lg-6 mt-4">
+                                                    <div hidden>
+
+                                                        <label class="form-label" for="basic-default-fullname">Discount
+                                                            limit</label>
+                                                        <input type="select" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-6 mt-4">
+                                                    <div hidden>
+
+                                                        <label class="form-label" for="basic-default-fullname">Number of
+                                                            users</label>
+                                                        <input type="select" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">Date Management</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="card-title">Show the banner only between the dates:</h6>
+                                            <div class="row gx-5">
+                                                <div class="col-12 col-lg-6 mt-4">
+                                                    <label class="form-label" for="basic-default-fullname">From
+                                                        date</label>
+                                                    <input type="date" name="startDate" value="{{categoryDetails.name}}"
+                                                        label="hello" class="form-control" id="basic-default-fullname"
+                                                        placeholder="From date" required="required" />
+                                                </div>
+
+                                                <div class="col-12 col-lg-6 mt-4">
+                                                    <label class="form-label" for="basic-default-fullname">To
+                                                        Date</label>
+                                                    <input type="date" name="endDate" value="{{categoryDetails.name}}"
+                                                        label="hello" class="form-control" id="basic-default-fullname"
+                                                        placeholder="To date" required="required" />
+                                                </div>
+                                            </div>
+
+                                            {{!--
+                                            <hr>
+                                            <h6 class="card-title mt-5">Show the banner only in this time:</h6>
+                                            <div class="row gx-5">
+                                                <div class="col-12 col-lg-6 mt-2">
+                                                    <label class="form-label" for="basic-default-fullname">From
+                                                    </label>
+                                                    <input type="time" name="name" value="{{categoryDetails.name}}"
+                                                        label="hello" class="form-control" id="basic-default-fullname"
+                                                        placeholder="From date" required="required" />
+                                                </div>
+
+                                                <div class="col-12 col-lg-6 mt-2">
+                                                    <label class="form-label" for="basic-default-fullname">To
+                                                    </label>
+                                                    <input type="time" name="discountAmount"
+                                                        value="{{categoryDetails.name}}" label="hello"
+                                                        class="form-control" id="basic-default-fullname"
+                                                        placeholder="To date" required="required" />
+                                                </div>
+                                            </div> --}}
+
+                                            {{!--
+                                            <hr>
+                                            <h6 class="card-title mt-5">Show the banner only on:</h6>
+                                            <div class="weekDays-selector">
+                                                <input type="checkbox" id="weekday-mon" class="weekday" />
+                                                <label for="weekday-mon">Mon</label>
+                                                <input type="checkbox" id="weekday-tue" class="weekday" />
+                                                <label for="weekday-tue">Tue</label>
+                                                <input type="checkbox" id="weekday-wed" class="weekday" />
+                                                <label for="weekday-wed">Wed</label>
+                                                <input type="checkbox" id="weekday-thu" class="weekday" />
+                                                <label for="weekday-thu">Thur</label>
+                                                <input type="checkbox" id="weekday-fri" class="weekday" />
+                                                <label for="weekday-fri">Fri</label>
+                                                <input type="checkbox" id="weekday-sat" class="weekday" />
+                                                <label for="weekday-sat">Sat</label>
+                                                <input type="checkbox" id="weekday-sun" class="weekday" />
+                                                <label for="weekday-sun">Sun</label>
+                                            </div> --}}
+                                            <div class="float-right mt-5 mr-4">
+                                                <input type="submit" class="btn btn-success" value="Submit" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Row end -->
+                    </div>
+                </div>
+        </div>
+    </div>
+    </class>
+</div>
+</div>
+</div>
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+<script>
+    let products;
+    jQuery(document).ready(async function ($) {
+        try {
+            let parentCategoryss = false;
+            const category = await axios.get('/admin/category')
+            let productDetails = await axios.get('/admin/productsDTO')
+            products = productDetails.data.products
+            comboTree2 = $('#justAnotherInputBox').comboTree({
+                source: category.data.parentCategories,
+                isMultiple: false
+            });
+        }
+        catch (e) {
+            console.log("sfkjshdf", e)
+        }
+    });
+
+    viewSections = () => {
+        let productSections = ["1stproductBanner", "2ndproductBanner", "3rdproductBanner", "4thproductBanner"]
+        let bannerSection = ["mainBanner", "subBanner"]
+        let value = document.getElementById("zoneSection").value
+        if (productSections.includes(value)) {
+            document.getElementById("categorySection").hidden = true;
+            document.getElementById("productDivSection").hidden = false;
+            let select = document.getElementById("productSections");
+            var defultoption = document.createElement("option");
+            defultoption.text = "--Selct Product--";
+            defultoption.value = "0";
+            select.appendChild(defultoption);
+
+            products.map((element) => {
+                console.log("le", element)
+                var option = document.createElement("option");
+                option.text = element.productName;
+                option.value = element._id;
+                select.appendChild(option);
+            })
+        }
+        else if (bannerSection.includes(value)) {
+            document.getElementById("productDivSection").hidden = true;
+            document.getElementById("categorySection").hidden = false;
+        }
+    }
+</script>
+
+<style>
+    .weekDays-selector input {
+        display: none !important;
+    }
+
+    .weekDays-selector input[type=checkbox]+label {
+        display: inline-block;
+        border-radius: 6px;
+        background: #dddddd;
+        height: 40px;
+        width: 40px;
+        margin-right: 3px;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .weekDays-selector input[type=checkbox]:checked+label {
+        background: #2AD705;
+        color: #ffffff;
+    }
+</style>

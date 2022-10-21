@@ -7,12 +7,29 @@ module.exports = {
   getBanner: async (id) => {
     try {
       let response = {};
-      let result = await Banner.findOne({ Id: id });
-      let parentName = await Banner.findOne({ Id: result.parent });
-      response.parentName = parentName.name;
-      console.log("result", result);
-      response.banner = result;
-      response.returnStatus = true;
+      let productBanners = await Banner.find({
+        zone: {
+          $in: [
+            "1stproductBanner",
+            "2ndproductBanner",
+            "3rdproductBanner",
+            "4thproductBanner",
+          ],
+        },
+        recordStatusId: 1,
+        status: true,
+      });
+      let mainBanners = await Banner.find({
+        zone: "mainBanner",
+        recordStatusId: 1,
+      });
+      let subBanner = await Banner.find({
+        zone: "mainBanner",
+        recordStatusId: 1,
+      });
+      response.subBanner = subBanner;
+      response.mainBanners = mainBanners;
+      response.productBanners = productBanners;
       return response;
     } catch (e) {
       console.error(e.message);
@@ -26,10 +43,28 @@ module.exports = {
     try {
       console.log("getParentCategories");
       let response = {};
-      let result = await Banner.find({ recordStatusId: 1 });
-
-      response.banners = result;
-      response.returnStatus = true;
+      let productBanners = await Banner.find({
+        zone: {
+          $in: [
+            "1stproductBanner",
+            "2ndproductBanner",
+            "3rdproductBanner",
+            "4thproductBanner",
+          ],
+        },
+        recordStatusId: 1,
+      });
+      let mainBanners = await Banner.find({
+        zone: "mainBanner",
+        recordStatusId: 1,
+      });
+      let subBanner = await Banner.find({
+        zone: "subBanner",
+        recordStatusId: 1,
+      });
+      response.subBanner = subBanner;
+      response.mainBanners = mainBanners;
+      response.productBanners = productBanners;
       return response;
     } catch (e) {
       response.returnStatus = false;
@@ -42,12 +77,7 @@ module.exports = {
     let response = {};
     try {
       if (NOSQLMode === 1) {
-        let bannerCode = voucher_codes.generate({
-          prefix: "mrvl-",
-        });
-
-        banner.bannerCode = bannerCode[0];
-        console.log("Updating banner", banner);
+        banner.recordStatusId = 1;
         await Banner.create({ ...banner });
         response.message = "banner saved successfully";
         return response;

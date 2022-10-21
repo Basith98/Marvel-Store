@@ -1,16 +1,26 @@
 const mongoose = require("mongoose");
 const AutoIncrement = require("mongoose-sequence")(mongoose);
+const Product = require("./productSchema");
 
 const bannerSchema = new mongoose.Schema(
   {
-    banner: {
+    name: {
       required: true,
       type: "string",
     },
-    bannerMap: {
+    zone: {
       type: "string",
       required: true,
     },
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Product,
+    },
+    status: { type: Boolean, default: false },
+    categoryId: Number,
+    imageName: String,
+    startDate: Date,
+    EndDate: Date,
     description: String,
     createdId: String,
     createdIp: String,

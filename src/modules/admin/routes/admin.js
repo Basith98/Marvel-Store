@@ -12,6 +12,7 @@ const BrandController = require("../controller/brandController");
 const CouponController = require("../controller/couponController");
 const OrderController = require("../controller/orderController");
 const LoginController = require("../controller/loginController");
+const BannerController = require("../controller/bannerController");
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -25,6 +26,7 @@ router.get("/logout", LoginController.logOut);
 router.get("/parentCategories", OptionDTOController.getParentCategories);
 router.get("/sizesDTO", OptionDTOController.getSizes);
 router.get("/colorDTO", OptionDTOController.getColors);
+router.get("/productsDTO", OptionDTOController.getProducts);
 
 //USER
 router.get("/user", UserController.getUsers);
@@ -73,5 +75,14 @@ router.post("/updateStatus", OrderController.updateOrder);
 router.get("/coupon", CouponController.getCoupons);
 router.get("/couponDetails", CouponController.getCoupon);
 router.post("/updateCoupon", CouponController.updateCoupon);
+
+//banner
+router.get("/bannerlist", BannerController.getBanners);
+router.get("/bannerDetails", BannerController.getBanner);
+router.post(
+  "/updateBanner",
+  upload.any("Image"),
+  BannerController.updateBanner
+);
 
 module.exports = router;
